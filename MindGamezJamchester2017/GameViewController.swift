@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         // create a new scene
-        let scene = SCNScene(named: "Scenes/TestScene01.scn")!
+        let scene = SCNScene(named: "art.scnassets/hauscopy.scn")!
         
         // create and add a camera to the scene
         let cameraNode = SCNNode()
@@ -41,10 +41,18 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(ambientLightNode)
         
         // retrieve the ship node
-        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
+//        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
         
         // animate the 3d object
-        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+//        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+        
+//        // create a reusable audio source
+//        let audioSource = SCNAudioSource(named: "sounds.scnassets/testsound.ogg")!
+//        
+//        // create an audio player
+//        let audioPlayer = SCNAudioPlayer(source: audioSource)
+//
+//        result.node.addAudioPlayer(audioPlayer)
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
