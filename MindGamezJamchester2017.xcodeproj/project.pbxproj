@@ -24,6 +24,7 @@
 		AD8BC41D1EFD965C0067BDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD8BC4201EFD965C0067BDE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD8BC4221EFD965C0067BDE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD8BC4291EFDA5910067BDE6 /* sound.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = sound.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			children = (
 				AD8BC4141EFD965C0067BDE6 /* AppDelegate.swift */,
 				AD8BC4161EFD965C0067BDE6 /* art.scnassets */,
+				AD8BC4291EFDA5910067BDE6 /* sound.scnassets */,
 				AD8BC4181EFD965C0067BDE6 /* GameViewController.swift */,
 				AD8BC41A1EFD965C0067BDE6 /* Main.storyboard */,
 				AD8BC41D1EFD965C0067BDE6 /* Assets.xcassets */,
