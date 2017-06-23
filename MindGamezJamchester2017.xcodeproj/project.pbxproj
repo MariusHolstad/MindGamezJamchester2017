@@ -25,6 +25,7 @@
 		AD8BC4201EFD965C0067BDE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD8BC4221EFD965C0067BDE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8BC4291EFDA5910067BDE6 /* sound.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = sound.scnassets; sourceTree = "<group>"; };
+		ADCBD70F1EFDB0EE006FB46A /* TestScene01.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = TestScene01.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 		AD8BC4131EFD965C0067BDE6 /* MindGamezJamchester2017 */ = {
 			isa = PBXGroup;
 			children = (
+				ADCBD70E1EFDB0EE006FB46A /* Scenes */,
 				AD8BC4141EFD965C0067BDE6 /* AppDelegate.swift */,
 				AD8BC4161EFD965C0067BDE6 /* art.scnassets */,
 				AD8BC4291EFDA5910067BDE6 /* sound.scnassets */,
@@ -67,6 +69,14 @@
 				AD8BC4221EFD965C0067BDE6 /* Info.plist */,
 			);
 			path = MindGamezJamchester2017;
+			sourceTree = "<group>";
+		};
+		ADCBD70E1EFDB0EE006FB46A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				ADCBD70F1EFDB0EE006FB46A /* TestScene01.scn */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +328,7 @@
 				AD8BC4271EFD965C0067BDE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
