@@ -20,6 +20,8 @@
 		ADCCCBC51EFDF66B00EE4A8A /* TappableAudioEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBC41EFDF66B00EE4A8A /* TappableAudioEntity.swift */; };
 		ADCCCBC71EFDF82D00EE4A8A /* AudioPlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBC61EFDF82D00EE4A8A /* AudioPlayerComponent.swift */; };
 		ADCCCBCA1EFDFD2B00EE4A8A /* GameplayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBC91EFDFD2B00EE4A8A /* GameplayConfiguration.swift */; };
+		ADCCCBCC1EFE4F1500EE4A8A /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBCB1EFE4F1500EE4A8A /* Game.swift */; };
+		ADCCCBCE1EFE63B000EE4A8A /* PlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBCD1EFE63B000EE4A8A /* PlayerComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		ADCCCBC41EFDF66B00EE4A8A /* TappableAudioEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableAudioEntity.swift; sourceTree = "<group>"; };
 		ADCCCBC61EFDF82D00EE4A8A /* AudioPlayerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerComponent.swift; sourceTree = "<group>"; };
 		ADCCCBC91EFDFD2B00EE4A8A /* GameplayConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayConfiguration.swift; sourceTree = "<group>"; };
+		ADCCCBCB1EFE4F1500EE4A8A /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		ADCCCBCD1EFE63B000EE4A8A /* PlayerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 				AD6FC3881EFDE915002A76D9 /* Entities */,
 				AD6FC3861EFDE6BB002A76D9 /* Assets.swift */,
 				ADCCCBC91EFDFD2B00EE4A8A /* GameplayConfiguration.swift */,
+				ADCCCBCB1EFE4F1500EE4A8A /* Game.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -77,6 +82,7 @@
 			children = (
 				AD6FC38C1EFDE9FF002A76D9 /* TapHandlerComponent.swift */,
 				ADCCCBC61EFDF82D00EE4A8A /* AudioPlayerComponent.swift */,
+				ADCCCBCD1EFE63B000EE4A8A /* PlayerComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -185,8 +191,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADCCCBCA1EFDFD2B00EE4A8A /* GameplayConfiguration.swift in Sources */,
+				ADCCCBCC1EFE4F1500EE4A8A /* Game.swift in Sources */,
 				AD6FC38D1EFDE9FF002A76D9 /* TapHandlerComponent.swift in Sources */,
 				AD6FC3871EFDE6BB002A76D9 /* Assets.swift in Sources */,
+				ADCCCBCE1EFE63B000EE4A8A /* PlayerComponent.swift in Sources */,
 				AD8BC4191EFD965C0067BDE6 /* GameViewController.swift in Sources */,
 				ADCCCBC31EFDF61E00EE4A8A /* AudioEntity.swift in Sources */,
 				ADCCCBC51EFDF66B00EE4A8A /* TappableAudioEntity.swift in Sources */,

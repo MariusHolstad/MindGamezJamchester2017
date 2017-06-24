@@ -36,22 +36,40 @@ class AudioPlayerComponent: GKComponent {
         }
     }
     
-    private func stopPlaying(withDuration duration: Double) {
-            
-        // start volume fade
-        SCNTransaction.begin()
-        SCNTransaction.animationDuration = duration
+    func stopPlaying(withDuration duration: Double) {
         
-        // on completion - remove audio player
-        SCNTransaction.completionBlock = {
-            if let baseEntity = self.entity as? BaseEntity {
-                baseEntity.node.removeAudioPlayer(self.audioPlayer!)
-                self.audioPlayer = nil
-            }
-        }
+        baseEntity.node.removeAudioPlayer(self.audioPlayer!)
+        self.audioPlayer = nil
         
-        audioSource.volume = 0
-        
-        SCNTransaction.commit()
+//        // start volume fade
+//        SCNTransaction.begin()
+//        SCNTransaction.animationDuration = duration
+//
+//        // on completion - remove audio player
+//        SCNTransaction.completionBlock = {
+//            if let baseEntity = self.entity as? BaseEntity {
+//                baseEntity.node.removeAudioPlayer(self.audioPlayer!)
+//                self.audioPlayer = nil
+//            }
+//        }
+//
+//        for audioPlayer in baseEntity.node.audioPlayers {
+//            audioPlayer.audioSource!.volume = 0
+//        }
+//
+//
+////        let currentVolume: Float = audioSource.volume
+////        let wantedVolume: Float = 0
+////        let changeVolume = SCNAction.customAction(duration: duration) { (node, elapsedTime) -> () in
+////            let percentage: Float = Float(elapsedTime) / Float(duration)
+//////            self.audioSource.volume = 0 //(1 - percentage) * currentVolume + percentage * wantedVolume
+////
+////            for audioPlayer in self.baseEntity.node.audioPlayers {
+////                audioPlayer.audioSource!.volume = 0
+////            }
+////        }
+////        baseEntity.node.runAction(changeVolume)
+//
+//        SCNTransaction.commit()
     }
 }
