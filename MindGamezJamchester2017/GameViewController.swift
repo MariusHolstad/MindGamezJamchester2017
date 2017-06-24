@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         // create a new scene
-        let scene = SCNScene(named: "art.scnassets/3D/ASS_Clock.dae")!
+        let scene = Assets.dae(named: "ASS_Clock.dae")
         
         // create and add a camera to the scene
         let cameraNode = SCNNode()
@@ -43,7 +43,7 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(ambientLightNode)
         
         // load a reusable audio source
-        audioSource = SCNAudioSource(named: "art.scnassets/sounds/testsound.ogg")!
+        audioSource = Assets.sound(named: "testsound.ogg")
         audioSource.isPositional = false
         audioSource.shouldStream = true
         audioSource.volume = 8.0

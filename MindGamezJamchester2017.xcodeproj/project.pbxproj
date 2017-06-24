@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD6FC3871EFDE6BB002A76D9 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6FC3861EFDE6BB002A76D9 /* Assets.swift */; };
+		AD6FC38A1EFDE956002A76D9 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6FC3891EFDE956002A76D9 /* BaseEntity.swift */; };
+		AD6FC38D1EFDE9FF002A76D9 /* TapHandlerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6FC38C1EFDE9FF002A76D9 /* TapHandlerComponent.swift */; };
 		AD8BC4151EFD965C0067BDE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8BC4141EFD965C0067BDE6 /* AppDelegate.swift */; };
 		AD8BC4171EFD965C0067BDE6 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AD8BC4161EFD965C0067BDE6 /* art.scnassets */; };
 		AD8BC4191EFD965C0067BDE6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8BC4181EFD965C0067BDE6 /* GameViewController.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD6FC3861EFDE6BB002A76D9 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		AD6FC3891EFDE956002A76D9 /* BaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
+		AD6FC38C1EFDE9FF002A76D9 /* TapHandlerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapHandlerComponent.swift; sourceTree = "<group>"; };
 		AD8BC4111EFD965C0067BDE6 /* MindGamezJamchester2017.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindGamezJamchester2017.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8BC4141EFD965C0067BDE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD8BC4161EFD965C0067BDE6 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -37,6 +43,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD6FC3851EFDE68F002A76D9 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				AD6FC38B1EFDE9CC002A76D9 /* Components */,
+				AD6FC3881EFDE915002A76D9 /* Entities */,
+				AD6FC3861EFDE6BB002A76D9 /* Assets.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		AD6FC3881EFDE915002A76D9 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				AD6FC3891EFDE956002A76D9 /* BaseEntity.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		AD6FC38B1EFDE9CC002A76D9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AD6FC38C1EFDE9FF002A76D9 /* TapHandlerComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		AD8BC4081EFD965C0067BDE6 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +88,7 @@
 		AD8BC4131EFD965C0067BDE6 /* MindGamezJamchester2017 */ = {
 			isa = PBXGroup;
 			children = (
+				AD6FC3851EFDE68F002A76D9 /* Source */,
 				AD8BC4141EFD965C0067BDE6 /* AppDelegate.swift */,
 				AD8BC4161EFD965C0067BDE6 /* art.scnassets */,
 				AD8BC4181EFD965C0067BDE6 /* GameViewController.swift */,
@@ -139,8 +172,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD6FC38D1EFDE9FF002A76D9 /* TapHandlerComponent.swift in Sources */,
+				AD6FC3871EFDE6BB002A76D9 /* Assets.swift in Sources */,
 				AD8BC4191EFD965C0067BDE6 /* GameViewController.swift in Sources */,
 				AD8BC4151EFD965C0067BDE6 /* AppDelegate.swift in Sources */,
+				AD6FC38A1EFDE956002A76D9 /* BaseEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
