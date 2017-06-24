@@ -203,12 +203,12 @@ class Game: NSObject, SCNSceneRendererDelegate {
             return SCNVector3( position )
         })
         
-//        let accelerationConstraint = SCNAccelerationConstraint()
-//        accelerationConstraint.maximumLinearVelocity = 1500.0
-//        accelerationConstraint.maximumLinearAcceleration = 50.0
-//        accelerationConstraint.damping = 0.05
+        let accelerationConstraint = SCNAccelerationConstraint()
+        accelerationConstraint.maximumLinearVelocity = 40.0
+        accelerationConstraint.maximumLinearAcceleration = 30.0
+        accelerationConstraint.damping = 0.2
         
-        cameraNode.constraints = [follow, keepAltitude] //, accelerationConstraint]
+        cameraNode.constraints = [follow, keepAltitude, accelerationConstraint]
     }
     
     // MARK: Methods
