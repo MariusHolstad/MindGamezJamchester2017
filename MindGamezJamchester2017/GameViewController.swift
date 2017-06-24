@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
         scnView.defaultCameraController?.automaticTarget = false
         scnView.defaultCameraController?.inertiaEnabled = true
         scnView.defaultCameraController?.dollyZoom(toTarget: 0)
-//        scnView.defaultCameraController?.inertiaFriction = 0
+//        scnView.defaultCameraController?.inertiaFriction = 2
 //        scnView.defaultCameraController?.maximumVerticalAngle = 60
 //        scnView.defaultCameraController?.target = SCNVector3Zero
 //        scnView.defaultCameraController?.interactionMode = .fly
@@ -93,12 +93,18 @@ class GameViewController: UIViewController {
     @objc
     func handlePan(_ gestureRecognize: UIGestureRecognizer) {
         if let panRecognize = gestureRecognize as? UIPanGestureRecognizer {
-            let velocity = panRecognize.velocity(in: self.view)
+            
+            let location = panRecognize.location(in: view)
+            let velocity = panRecognize.velocity(in: view)
+            let viewPortSize = view.intrinsicContentSize
             
             let scale: Float = 0.01
             
             let scnView = self.view as! SCNView
             scnView.defaultCameraController?.rotateBy(x: -Float(velocity.y) * scale, y: -Float(velocity.x) * scale)
+//            scnView.defaultCameraController?.beginInteraction(location, withViewport: viewPortSize)
+//            scnView.defaultCameraController?.continueInteraction(location, withViewport: viewPortSize, sensitivity: 1)
+            scnView.defaultCameraController?.endInteraction(location, withViewport: viewPortSize, velocity: velocity)
         }
     }
     
