@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import GameplayKit
 
 class GameViewController: UIViewController {
     
@@ -42,11 +43,13 @@ class GameViewController: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
-        // load a reusable audio source
-        audioSource = Assets.sound(named: "testsound.ogg")
-        audioSource.isPositional = false
-        audioSource.shouldStream = true
-        audioSource.volume = 8.0
+//        // load a reusable audio source
+//        audioSource = Assets.sound(named: "testsound.ogg")
+//        audioSource.isPositional = false
+//        audioSource.shouldStream = true
+//        audioSource.volume = 8.0
+        
+        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
@@ -83,28 +86,8 @@ class GameViewController: UIViewController {
             // retrieved the first clicked object
             let result = hitResults[0]
             
-            // get its material
-            let material = result.node.geometry!.firstMaterial!
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.5
-            
-            // on completion - unhighlight
-            SCNTransaction.completionBlock = {
-                SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
-                
-                material.emission.contents = UIColor.black
-                
-                SCNTransaction.commit()
-            }
-            
-            material.emission.contents = UIColor.red
-            
-            SCNTransaction.commit()
-            
-            result.node.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+            // pass the UIGestureRecognizer to the object if it has a TapHandlerComponent
+            result.node.entity?.component(ofType: TapHandlerComponent.self)?.handleTap(gestureRecognize)
         }
     }
     

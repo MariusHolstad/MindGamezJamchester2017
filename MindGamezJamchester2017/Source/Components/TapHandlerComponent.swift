@@ -10,11 +10,52 @@ import GameplayKit
 
 class TapHandlerComponent: GKComponent {
     
-    override func didAddToEntity() {
-        <#code#>
+    let baseEntity: BaseEntity
+    
+    init(_ baseEntity: BaseEntity) {
+        self.baseEntity = baseEntity
+        super.init()
     }
     
-    override func willRemoveFromEntity() {
-        <#code#>
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+//    override func didAddToEntity() {
+//        <#code#>
+//    }
+//    
+//    override func willRemoveFromEntity() {
+//        <#code#>
+//    }
+    
+    func handleTap(_ gestureRecognize: UIGestureRecognizer) {
+        highlight()
+    }
+    
+    private func highlight() {
+            
+        let node = baseEntity.node
+        
+        // get its material
+        let material = node.geometry!.firstMaterial!
+        
+        // highlight it
+        SCNTransaction.begin()
+        SCNTransaction.animationDuration = 0.5
+        
+        // on completion - unhighlight
+        SCNTransaction.completionBlock = {
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.5
+            
+            material.emission.contents = UIColor.black
+            
+            SCNTransaction.commit()
+        }
+        
+        material.emission.contents = UIColor.red
+        
+        SCNTransaction.commit()
     }
 }
