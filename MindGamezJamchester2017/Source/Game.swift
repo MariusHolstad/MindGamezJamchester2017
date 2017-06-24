@@ -18,9 +18,6 @@ class Game: NSObject, SCNSceneRendererDelegate {
     /// The scene that the game controls.
     let scene = Assets.dae(named: "ASS_Room.dae")
     
-    // Manages all player components, allowing you to access all of them in one place.
-    let playerComponentSystem = GKComponentSystem(componentClass: PlayerComponent.self)
-    
     var cameraTarget: SCNNode!
     
     // An array of all nodes with a player component attached.
@@ -65,26 +62,42 @@ class Game: NSObject, SCNSceneRendererDelegate {
     /// Sets up the entities for the scene.
     func setUpEntities() {
         
-//        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
-//        entities.append(clockEntity)
-        
+        // Floor
         let floor = BaseEntity(inScene: scene, forNodeWithName: "Floor")
         floor.addComponent(TapHandlerComponent(floor))
         
+        // Rug
         let rug = BaseEntity(inScene: scene, forNodeWithName: "Rug")
         rug.addComponent(TapHandlerComponent(rug))
         
+        // Alarm Clock
+        let alarmClock = BaseEntity(inScene: scene, forNodeWithName: "Cylinder")
+        
+        // Radio
+        let radio = BaseEntity(inScene: scene, forNodeWithName: "Radio")
+        
+        // Fan
+        let fan = BaseEntity(inScene: scene, forNodeWithName: "Fan")
+        
+        // TV
+        let tv = BaseEntity(inScene: scene, forNodeWithName: "TV")
+        
+        // Phone
+        let phone = BaseEntity(inScene: scene, forNodeWithName: "Phone_Open")
+        
+        // Lamp
+        let lamp = BaseEntity(inScene: scene, forNodeWithName: "Lamp")
+        
+        // Player
         let playerNode = SCNNode()
         let player = BaseEntity(playerNode) //BaseEntity(inScene: Assets.dae(named: "ASS_Clock.dae"), forNodeWithName: "Clock")
         player.addComponent(PlayerComponent(player))
         scene.rootNode.addChildNode(player.node)
         
-        // place the player
+        // Place the player
         player.node.position = SCNVector3(x: 0, y: 0, z: 0)
         
         cameraTarget = player.node
-        
-//        playerComponentSystem.addComponent(foundIn: player)
     }
     
     func setUpCamera() {
