@@ -26,21 +26,13 @@ class GameViewController: UIViewController {
         // set the scene to the view
         scnView.scene = game.scene
         
-        // allows the user to manipulate the camera
-//        scnView.allowsCameraControl = true
-//        let cameraController = SCNCameraController()
-//        scnView.defaultCameraController = cameraController
+        // force view to update continiously
+        scnView.isPlaying = true
         
         // configure the camera control behaviour
         scnView.defaultCameraController?.automaticTarget = false
         scnView.defaultCameraController?.inertiaEnabled = true
         scnView.defaultCameraController?.dollyZoom(toTarget: 0)
-//        scnView.defaultCameraController?.inertiaFriction = 2
-//        scnView.defaultCameraController?.maximumVerticalAngle = 90
-//        scnView.defaultCameraController?.maximumHorizontalAngle = 90
-//        scnView.defaultCameraController?.target = SCNVector3Zero
-//        scnView.defaultCameraController?.interactionMode = .fly
-//
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
