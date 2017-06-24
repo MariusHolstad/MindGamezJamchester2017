@@ -250,7 +250,20 @@ class Game: NSObject, SCNSceneRendererDelegate {
         let keepAltitude = SCNTransformConstraint.positionConstraint(inWorldSpace: true, with: {(_ node: SCNNode, _ position: SCNVector3) -> SCNVector3 in
             var position = float3(position)
             position.y = position.y + GameplayConfiguration.camera.desiredAltitude
-            return SCNVector3( position )
+            return SCNVector3(position)
+        })
+        
+        let keepLeveled = SCNTransformConstraint.orientationConstraint(inWorldSpace: true, with: {(_ node: SCNNode, _ orientation: SCNQuaternion) -> SCNQuaternion in
+//            let qx = orientation.x
+//            let qy = orientation.y
+//            let qz = orientation.z
+//            let qw = orientation.w
+//            
+//            var heading = atan2(2*qy*qw-2*qx*qz , 1 - 2*qy^2 - 2*qz^2)
+//            var attitude = asin(2*qx*qy + 2*qz*qw)
+//            var bank = atan2(2*qx*qw-2*qy*qz , 1 - 2*qx^2 - 2*qz^2)
+            
+            return orientation
         })
         
         let accelerationConstraint = SCNAccelerationConstraint()
@@ -258,7 +271,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         accelerationConstraint.maximumLinearAcceleration = 30.0
         accelerationConstraint.damping = 0.2
         
-        cameraNode.constraints = [follow, keepAltitude, accelerationConstraint]
+        cameraNode.constraints = [follow, keepAltitude, keepLeveled, accelerationConstraint]
     }
     
     // MARK: Methods
