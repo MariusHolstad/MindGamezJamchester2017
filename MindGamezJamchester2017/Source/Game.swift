@@ -6,14 +6,32 @@
 //  Copyright © 2017 Mind Gamez. All rights reserved.
 //
 
-import SceneKit
+import GameplayKit
 
 class Game: NSObject, SCNSceneRendererDelegate {
     
     // MARK: Properties
     
+    /// Keeps track of the time for use in the update method.
+    var previousUpdateTime: TimeInterval = 0
+    
     /// The scene that the game controls.
-    let scene = Assets.dae(named: "ASS_Clock.dae") //SCNScene(named: "GameScene.scn")!
+    let scene = Assets.dae(named: "ASS_Room.dae")
+    
+    // Manages all player components, allowing you to access all of them in one place.
+    let playerComponentSystem = GKComponentSystem(componentClass: PlayerComponent.self)
+    
+    var cameraTarget: SCNNode!
+    
+    // An array of all nodes with a player component attached.
+    var players: [SCNNode] {
+        return scene.rootNode.childNodes(passingTest: { (node: SCNNode, _: UnsafeMutablePointer<ObjCBool>) -> Bool in
+            if let _ = node.entity?.component(ofType: PlayerComponent.self) {
+                return true
+            }
+            return false
+        })
+    }
     
     /// Holds the entities, so they won't be deallocated.
     var entities = [BaseEntity]()
@@ -24,18 +42,10 @@ class Game: NSObject, SCNSceneRendererDelegate {
         super.init()
         
         setUpScene()
+        setUpCamera()
     }
     
     func setUpScene() {
-        
-        // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.name = "cameraNode"
-        cameraNode.camera = SCNCamera()
-        scene.rootNode.addChildNode(cameraNode)
-        
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
         
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -55,7 +65,94 @@ class Game: NSObject, SCNSceneRendererDelegate {
     /// Sets up the entities for the scene.
     func setUpEntities() {
         
-        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
-        entities.append(clockEntity)
+//        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
+//        entities.append(clockEntity)
+        
+        let ground = BaseEntity(inScene: scene, forNodeWithName: "Plane")
+        ground.addComponent(TapHandlerComponent(ground))
+        
+        let playerNode = SCNNode()
+        let player = BaseEntity(playerNode) //BaseEntity(inScene: Assets.dae(named: "ASS_Clock.dae"), forNodeWithName: "Clock")
+        player.addComponent(PlayerComponent(player))
+        scene.rootNode.addChildNode(player.node)
+        
+        // place the player
+        player.node.position = SCNVector3(x: 0, y: 0, z: 0)
+        
+        cameraTarget = player.node
+        
+//        playerComponentSystem.addComponent(foundIn: player)
     }
+    
+    func setUpCamera() {
+        
+        // create and add a camera to the scene
+        let cameraNode = SCNNode()
+        cameraNode.name = "cameraNode"
+        cameraNode.camera = SCNCamera()
+        scene.rootNode.addChildNode(cameraNode)
+        
+        // place the camera
+//        cameraNode.position = SCNVector3(x: 0, y: 3, z: 0)
+        
+//        // Activate SSAO
+//        cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
+//
+//        // Configure SSAO
+//        cameraNode.camera!.screenSpaceAmbientOcclusionRadius = 5 //scene units
+//        cameraNode.camera!.screenSpaceAmbientOcclusionBias = 0.03 //scene units
+//        cameraNode.camera!.screenSpaceAmbientOcclusionDepthThreshold = 0.2 //scene units
+//        cameraNode.camera!.screenSpaceAmbientOcclusionNormalThreshold = 0.3
+        
+        
+    }
+    
+    func setUpCameraConstraints() {
+        
+        let cameraNode = scene.rootNode.childNode(withName: "cameraNode", recursively: false)!
+        
+        // distance constraints
+        let follow = SCNDistanceConstraint(target: cameraTarget)
+        follow.minimumDistance = 0
+        follow.maximumDistance = 0
+        
+        // configure a constraint to maintain a constant altitude relative to the character
+        let desiredAltitude: Float = 3 //abs(cameraNode.simdWorldPosition.y)
+        
+        let keepAltitude = SCNTransformConstraint.positionConstraint(inWorldSpace: true, with: {(_ node: SCNNode, _ position: SCNVector3) -> SCNVector3 in
+            var position = float3(position)
+            position.y = position.y + desiredAltitude
+            return SCNVector3( position )
+        })
+        
+//        let accelerationConstraint = SCNAccelerationConstraint()
+//        accelerationConstraint.maximumLinearVelocity = 1500.0
+//        accelerationConstraint.maximumLinearAcceleration = 50.0
+//        accelerationConstraint.damping = 0.05
+        
+        cameraNode.constraints = [follow, keepAltitude] //, accelerationConstraint]
+    }
+    
+    // MARK: Methods
+    
+//    // Updates every frame.
+//    func renderer(_: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+//        // Calculate the time change since the previous update.
+//        let timeSincePreviousUpdate = time - previousUpdateTime
+//
+////        for player in players {
+////            player.entity!.component(ofType: PlayerComponent.self)!.update(deltaTime: timeSincePreviousUpdate)
+////        }
+//
+//        playerComponentSystem.update(deltaTime: timeSincePreviousUpdate)
+//
+//        // Update the previous update time to keep future calculations accurate.
+//        previousUpdateTime = time
+//    }
+    
+//    func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+//        let cameraNode = scene.rootNode.childNode(withName: "cameraNode", recursively: false)!
+//        cameraNode.orientation = SCNQuaternion()
+//    }
 }
+
