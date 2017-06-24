@@ -68,8 +68,8 @@ class Game: NSObject, SCNSceneRendererDelegate {
 //        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
 //        entities.append(clockEntity)
         
-        let ground = BaseEntity(inScene: scene, forNodeWithName: "Plane")
-        ground.addComponent(TapHandlerComponent(ground))
+        let floor = BaseEntity(inScene: scene, forNodeWithName: "Floor")
+        floor.addComponent(TapHandlerComponent(floor))
         
         let playerNode = SCNNode()
         let player = BaseEntity(playerNode) //BaseEntity(inScene: Assets.dae(named: "ASS_Clock.dae"), forNodeWithName: "Clock")

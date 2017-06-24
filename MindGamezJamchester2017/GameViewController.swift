@@ -36,7 +36,8 @@ class GameViewController: UIViewController {
         scnView.defaultCameraController?.inertiaEnabled = true
         scnView.defaultCameraController?.dollyZoom(toTarget: 0)
 //        scnView.defaultCameraController?.inertiaFriction = 2
-//        scnView.defaultCameraController?.maximumVerticalAngle = 60
+//        scnView.defaultCameraController?.maximumVerticalAngle = 90
+//        scnView.defaultCameraController?.maximumHorizontalAngle = 90
 //        scnView.defaultCameraController?.target = SCNVector3Zero
 //        scnView.defaultCameraController?.interactionMode = .fly
 //
@@ -82,7 +83,8 @@ class GameViewController: UIViewController {
             // pass the UIGestureRecognizer to the object if it has a TapHandlerComponent
             result.node.entity?.component(ofType: TapHandlerComponent.self)?.handleTap(gestureRecognize)
             
-            if result.node.name == "Plane" {
+            let name = result.node.name
+            if name == "Floor" || name == "Rug" {
                 for player in game.players {
                     player.entity!.component(ofType: PlayerComponent.self)!.moveTo(result.worldCoordinates)
                 }
@@ -95,16 +97,27 @@ class GameViewController: UIViewController {
         if let panRecognize = gestureRecognize as? UIPanGestureRecognizer {
             
             let location = panRecognize.location(in: view)
-            let velocity = panRecognize.velocity(in: view)
-            let viewPortSize = view.intrinsicContentSize
-            
-            let scale: Float = 0.01
+            var velocity = panRecognize.velocity(in: view)
+            let viewPort = view.intrinsicContentSize
             
             let scnView = self.view as! SCNView
-            scnView.defaultCameraController?.rotateBy(x: -Float(velocity.y) * scale, y: -Float(velocity.x) * scale)
-//            scnView.defaultCameraController?.beginInteraction(location, withViewport: viewPortSize)
-//            scnView.defaultCameraController?.continueInteraction(location, withViewport: viewPortSize, sensitivity: 1)
-            scnView.defaultCameraController?.endInteraction(location, withViewport: viewPortSize, velocity: velocity)
+            if let cameraController = scnView.defaultCameraController {
+                switch panRecognize.state {
+                case .began:
+                    cameraController.beginInteraction(location, withViewport: viewPort)
+                case .ended:
+                    let velocityScale: CGFloat = 0.15
+                    velocity.x = velocity.x * velocityScale
+                    velocity.y = velocity.y * velocityScale
+                    cameraController.endInteraction(location, withViewport: viewPort, velocity: velocity)
+                default:
+                    let velocityScale: CGFloat = 0.003
+                    velocity.x = velocity.x * velocityScale
+                    velocity.y = velocity.y * velocityScale
+                    cameraController.stopInertia()
+                    cameraController.rotateBy(x: -Float(velocity.y), y: -Float(velocity.x))
+                }
+            }
         }
     }
     
