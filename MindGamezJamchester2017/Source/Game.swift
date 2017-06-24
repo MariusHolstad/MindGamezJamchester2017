@@ -70,13 +70,15 @@ class Game: NSObject, SCNSceneRendererDelegate {
         let rug = BaseEntity(inScene: scene, forNodeWithName: "Rug")
         rug.addComponent(TapHandlerComponent(rug))
         
+        
+        
         // Alarm Clock
         let alarmClock = BaseEntity(inScene: scene, forNodeWithName: "Cylinder")
         let alarmClockAudioPlayerComponent = AudioPlayerComponent(alarmClock)
         
         let clockAlarmSource = Assets.sound(named: "analog alarm.mp3")
         clockAlarmSource.loops = true
-        clockAlarmSource.volume = GameplayConfiguration.SFX.sfxVolume
+        clockAlarmSource.volume = GameplayConfiguration.SFX.sfxVolume * 0.1
         clockAlarmSource.isPositional = true
         clockAlarmSource.shouldStream = false
         clockAlarmSource.load()
@@ -88,18 +90,32 @@ class Game: NSObject, SCNSceneRendererDelegate {
         clockTickSource.shouldStream = false
         clockTickSource.load()
         
+        let clockMusicSource = Assets.sound(named: "clock music layer.mp3")
+        clockMusicSource.loops = true
+        clockMusicSource.volume = GameplayConfiguration.SFX.musicVolume
+        clockMusicSource.isPositional = true
+        clockMusicSource.shouldStream = false
+        clockMusicSource.load()
+        
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockTickSource)
+        alarmClockAudioPlayerComponent.startPlaying(audioSource: clockMusicSource, interuptable: true)
         alarmClock.addComponent(alarmClockAudioPlayerComponent)
         // NOTE: Loop sound
+        
+        
         
         // Radio
         let radio = BaseEntity(inScene: scene, forNodeWithName: "Radio")
         // NOTE: Play once
         
+        
+        
         // Fan
         let fan = BaseEntity(inScene: scene, forNodeWithName: "Fan")
         // NOTE: Loop sound
+        
+        
         
         // TV
         let tv = BaseEntity(inScene: scene, forNodeWithName: "TV")
@@ -118,6 +134,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         // NOTE: Play once
         
         
+        
         // Phone
         let phone = BaseEntity(inScene: scene, forNodeWithName: "Phone_Open")
         let phoneAudioPlayerComponent = AudioPlayerComponent(phone)
@@ -129,10 +146,19 @@ class Game: NSObject, SCNSceneRendererDelegate {
         phoneSource.shouldStream = false
         phoneSource.load()
         
-//        phoneAudioPlayerComponent(audioSource: clockAlarmSource, interuptable: true)
+        let phoneMusicSource = Assets.sound(named: "phone music layer.mp3")
+        phoneMusicSource.loops = true
+        phoneMusicSource.volume = GameplayConfiguration.SFX.musicVolume
+        phoneMusicSource.isPositional = true
+        phoneMusicSource.shouldStream = false
+        phoneMusicSource.load()
+        
         phoneAudioPlayerComponent.startPlaying(audioSource: phoneSource)
+        phoneAudioPlayerComponent.startPlaying(audioSource: phoneMusicSource, interuptable: true)
         phone.addComponent(phoneAudioPlayerComponent)
         // NOTE: Play once
+        
+        
         
         // Lamp
         let lamp = BaseEntity(inScene: scene, forNodeWithName: "Lamp")
@@ -145,10 +171,19 @@ class Game: NSObject, SCNSceneRendererDelegate {
         lampSource.shouldStream = false
         lampSource.load()
         
-//        lampAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
+        let lampMusicSource = Assets.sound(named: "lamp music layer.mp3")
+        lampMusicSource.loops = true
+        lampMusicSource.volume = GameplayConfiguration.SFX.musicVolume
+        lampMusicSource.isPositional = true
+        lampMusicSource.shouldStream = false
+        lampMusicSource.load()
+        
         lampAudioPlayerComponent.startPlaying(audioSource: lampSource)
+        lampAudioPlayerComponent.startPlaying(audioSource: lampMusicSource, interuptable: true)
         lamp.addComponent(lampAudioPlayerComponent)
         // NOTE: Loop sound
+        
+        
         
         // Player
         let playerNode = SCNNode()
