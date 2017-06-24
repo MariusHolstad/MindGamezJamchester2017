@@ -217,7 +217,10 @@ class Game: NSObject, SCNSceneRendererDelegate {
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
         
-//        cameraNode.camera?.colorGrading.contents = MDLTexture(named: Assets.basePath + "textures/" + "ColorTableGraded.png")
+        // prevent camera from cliping through close objects
+        cameraNode.camera!.zNear = 0.01
+        
+//        cameraNode.camera!.colorGrading.contents = MDLTexture(named: Assets.basePath + "textures/" + "ColorTableGraded.png")
         
 //        // Activate SSAO
 //        cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
