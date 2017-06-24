@@ -12,12 +12,14 @@ class AudioPlayerComponent: GKComponent {
     
     let baseEntity: BaseEntity
     
-    var audioSource: SCNAudioSource
-    var audioPlayer: SCNAudioPlayer?
+    var audioSources = [SCNAudioSource]()
+    var interuptableSources = [SCNAudioSource: Bool]()
+    var audioPlayers: [SCNAudioPlayer] {
+        return baseEntity.node.audioPlayers
+    }
     
-    init(_ baseEntity: BaseEntity, audioSource: SCNAudioSource) {
+    init(_ baseEntity: BaseEntity) {
         self.baseEntity = baseEntity
-        self.audioSource = audioSource
         super.init()
     }
     
@@ -26,32 +28,59 @@ class AudioPlayerComponent: GKComponent {
     }
     
     override func didAddToEntity() {
-        audioPlayer = SCNAudioPlayer(source: audioSource)
-        baseEntity.node.addAudioPlayer(audioPlayer!)
+        for audioSource in audioSources {
+            baseEntity.node.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+        }
     }
     
     override func willRemoveFromEntity() {
-        if let audioPlayer = audioPlayer {
-            baseEntity.node.removeAudioPlayer(audioPlayer)
+        baseEntity.node.removeAllAudioPlayers()
+    }
+    
+    func startPlaying(audioSource: SCNAudioSource, interuptable: Bool = false) {
+        if let _ = entity {
+            audioSources.append(audioSource)
+            baseEntity.node.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+        } else {
+            audioSources.append(audioSource)
+        }
+        
+        if interuptable {
+            interuptableSources[audioSource] = true
+            baseEntity.addComponent(TapHandlerComponent(baseEntity))
         }
     }
     
     func stopPlaying(withDuration duration: Double) {
         
-        baseEntity.node.removeAudioPlayer(self.audioPlayer!)
-        self.audioPlayer = nil
-        
-//        // start volume fade
-//        SCNTransaction.begin()
-//        SCNTransaction.animationDuration = duration
+        for audioSource in audioSources where interuptableSources[audioSource] == true {
+            for audioPlayer in audioPlayers {
+                if audioPlayer.audioSource == audioSource {
+                    
+//                    // start volume fade
+//                    SCNTransaction.begin()
+//                    SCNTransaction.animationDuration = duration
 //
-//        // on completion - remove audio player
-//        SCNTransaction.completionBlock = {
-//            if let baseEntity = self.entity as? BaseEntity {
-//                baseEntity.node.removeAudioPlayer(self.audioPlayer!)
-//                self.audioPlayer = nil
-//            }
-//        }
+//                    // on completion - remove audio player
+//                    SCNTransaction.completionBlock = {
+//                        self.baseEntity.node.removeAudioPlayer(audioPlayer)
+//                    }
+//
+//                    audioPlayer.audioSource!.volume = 0
+//
+//                    SCNTransaction.commit()
+                    
+//                    baseEntity.node.runAction(SCNAction.changeVolumeTo(0, forAudioPlayer: audioPlayer, duration: duration))
+                    
+                    
+                }
+            }
+        }
+        
+        baseEntity.removeComponent(ofType: TapHandlerComponent.self)
+        
+        
+        
 //
 //        for audioPlayer in baseEntity.node.audioPlayers {
 //            audioPlayer.audioSource!.volume = 0
@@ -70,6 +99,5 @@ class AudioPlayerComponent: GKComponent {
 ////        }
 ////        baseEntity.node.runAction(changeVolume)
 //
-//        SCNTransaction.commit()
     }
 }

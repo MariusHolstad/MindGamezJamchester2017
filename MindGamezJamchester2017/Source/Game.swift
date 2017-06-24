@@ -71,22 +71,84 @@ class Game: NSObject, SCNSceneRendererDelegate {
         rug.addComponent(TapHandlerComponent(rug))
         
         // Alarm Clock
-        let alarmClock = TappableAudioEntity(inScene: scene, forNodeWithName: "Cylinder")
+        let alarmClock = BaseEntity(inScene: scene, forNodeWithName: "Cylinder")
+        let alarmClockAudioPlayerComponent = AudioPlayerComponent(alarmClock)
+        
+        let clockAlarmSource = Assets.sound(named: "analog alarm.mp3")
+        clockAlarmSource.loops = true
+        clockAlarmSource.volume = GameplayConfiguration.SFX.sfxVolume
+        clockAlarmSource.isPositional = true
+        clockAlarmSource.shouldStream = false
+        clockAlarmSource.load()
+        
+        let clockTickSource = Assets.sound(named: "clock tick ambience.mp3")
+        clockTickSource.loops = true
+        clockTickSource.volume = GameplayConfiguration.SFX.sfxVolume
+        clockTickSource.isPositional = true
+        clockTickSource.shouldStream = false
+        clockTickSource.load()
+        
+        alarmClockAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
+        alarmClockAudioPlayerComponent.startPlaying(audioSource: clockTickSource)
+        alarmClock.addComponent(alarmClockAudioPlayerComponent)
+        // NOTE: Loop sound
         
         // Radio
         let radio = BaseEntity(inScene: scene, forNodeWithName: "Radio")
+        // NOTE: Play once
         
         // Fan
         let fan = BaseEntity(inScene: scene, forNodeWithName: "Fan")
+        // NOTE: Loop sound
         
         // TV
         let tv = BaseEntity(inScene: scene, forNodeWithName: "TV")
+        let tvAudioPlayerComponent = AudioPlayerComponent(tv)
+        
+        let tvSource = Assets.sound(named: "TV ambience.mp3")
+        tvSource.loops = true
+        tvSource.volume = GameplayConfiguration.SFX.sfxVolume
+        tvSource.isPositional = true
+        tvSource.shouldStream = false
+        tvSource.load()
+        
+//        tvAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
+        tvAudioPlayerComponent.startPlaying(audioSource: tvSource)
+        tv.addComponent(tvAudioPlayerComponent)
+        // NOTE: Play once
+        
         
         // Phone
         let phone = BaseEntity(inScene: scene, forNodeWithName: "Phone_Open")
+        let phoneAudioPlayerComponent = AudioPlayerComponent(phone)
+        
+        let phoneSource = Assets.sound(named: "phone busy ambience.mp3")
+        phoneSource.loops = true
+        phoneSource.volume = GameplayConfiguration.SFX.sfxVolume
+        phoneSource.isPositional = true
+        phoneSource.shouldStream = false
+        phoneSource.load()
+        
+//        phoneAudioPlayerComponent(audioSource: clockAlarmSource, interuptable: true)
+        phoneAudioPlayerComponent.startPlaying(audioSource: phoneSource)
+        phone.addComponent(phoneAudioPlayerComponent)
+        // NOTE: Play once
         
         // Lamp
         let lamp = BaseEntity(inScene: scene, forNodeWithName: "Lamp")
+        let lampAudioPlayerComponent = AudioPlayerComponent(lamp)
+        
+        let lampSource = Assets.sound(named: "lamp ambiance.mp3")
+        lampSource.loops = true
+        lampSource.volume = GameplayConfiguration.SFX.sfxVolume
+        lampSource.isPositional = true
+        lampSource.shouldStream = false
+        lampSource.load()
+        
+//        lampAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
+        lampAudioPlayerComponent.startPlaying(audioSource: lampSource)
+        lamp.addComponent(lampAudioPlayerComponent)
+        // NOTE: Loop sound
         
         // Player
         let playerNode = SCNNode()
