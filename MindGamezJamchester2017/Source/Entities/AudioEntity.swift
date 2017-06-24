@@ -13,7 +13,7 @@ class AudioEntity: BaseEntity {
     override init(_ node: SCNNode) {
         super.init(node)
         
-        let audioSource = Assets.sound(named: "testsound.ogg")
+        let audioSource = Assets.sound(named: "testsound.mp3")
         let audioPlayerComponent = AudioPlayerComponent(self, audioSource: audioSource)
         audioPlayerComponent.audioSource.volume = GameplayConfiguration.SFX.sfxVolume
         addComponent(audioPlayerComponent)
