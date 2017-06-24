@@ -57,18 +57,22 @@ class AudioPlayerComponent: GKComponent {
             for audioPlayer in audioPlayers {
                 if audioPlayer.audioSource == audioSource {
                     
-                    // start volume fade
-                    SCNTransaction.begin()
-                    SCNTransaction.animationDuration = duration
+//                    // start volume fade
+//                    SCNTransaction.begin()
+//                    SCNTransaction.animationDuration = duration
+//
+//                    // on completion - remove audio player
+//                    SCNTransaction.completionBlock = {
+//                        self.baseEntity.node.removeAudioPlayer(audioPlayer)
+//                    }
+//
+//                    audioPlayer.audioSource!.volume = 0
+//
+//                    SCNTransaction.commit()
                     
-                    // on completion - remove audio player
-                    SCNTransaction.completionBlock = {
-                        self.baseEntity.node.removeAudioPlayer(audioPlayer)
-                    }
+//                    baseEntity.node.runAction(SCNAction.changeVolumeTo(0, forAudioPlayer: audioPlayer, duration: duration))
                     
-                    audioPlayer.audioSource!.volume = 0
                     
-                    SCNTransaction.commit()
                 }
             }
         }

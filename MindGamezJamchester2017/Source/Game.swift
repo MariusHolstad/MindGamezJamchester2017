@@ -78,13 +78,15 @@ class Game: NSObject, SCNSceneRendererDelegate {
         clockAlarmSource.loops = true
         clockAlarmSource.volume = GameplayConfiguration.SFX.sfxVolume
         clockAlarmSource.isPositional = true
-        clockAlarmSource.shouldStream = true
+        clockAlarmSource.shouldStream = false
+        clockAlarmSource.load()
         
         let clockTickSource = Assets.sound(named: "clock tick ambience.mp3")
         clockTickSource.loops = true
         clockTickSource.volume = GameplayConfiguration.SFX.sfxVolume
         clockTickSource.isPositional = true
-        clockTickSource.shouldStream = true
+        clockTickSource.shouldStream = false
+        clockTickSource.load()
         
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockTickSource)
@@ -107,7 +109,8 @@ class Game: NSObject, SCNSceneRendererDelegate {
         tvSource.loops = true
         tvSource.volume = GameplayConfiguration.SFX.sfxVolume
         tvSource.isPositional = true
-        tvSource.shouldStream = true
+        tvSource.shouldStream = false
+        tvSource.load()
         
 //        tvAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
         tvAudioPlayerComponent.startPlaying(audioSource: tvSource)
@@ -123,7 +126,8 @@ class Game: NSObject, SCNSceneRendererDelegate {
         phoneSource.loops = true
         phoneSource.volume = GameplayConfiguration.SFX.sfxVolume
         phoneSource.isPositional = true
-        phoneSource.shouldStream = true
+        phoneSource.shouldStream = false
+        phoneSource.load()
         
 //        phoneAudioPlayerComponent(audioSource: clockAlarmSource, interuptable: true)
         phoneAudioPlayerComponent.startPlaying(audioSource: phoneSource)
@@ -138,7 +142,8 @@ class Game: NSObject, SCNSceneRendererDelegate {
         lampSource.loops = true
         lampSource.volume = GameplayConfiguration.SFX.sfxVolume
         lampSource.isPositional = true
-        lampSource.shouldStream = true
+        lampSource.shouldStream = false
+        lampSource.load()
         
 //        lampAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
         lampAudioPlayerComponent.startPlaying(audioSource: lampSource)
