@@ -43,13 +43,13 @@ class Game: NSObject, SCNSceneRendererDelegate {
     }
     
     func setUpScene() {
-//
-//        // create and add a light to the scene
-//        let lightNode = SCNNode()
-//        lightNode.light = SCNLight()
-//        lightNode.light!.type = .omni
-//        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-//        scene.rootNode.addChildNode(lightNode)
+        
+        // create and add a light to the scene
+        let lightNode = SCNNode()
+        lightNode.light = SCNLight()
+        lightNode.light!.type = .omni
+        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+        scene.rootNode.addChildNode(lightNode)
         
         // create and add an ambient light to the scene
         let ambientLightNode = SCNNode()
@@ -116,15 +116,15 @@ class Game: NSObject, SCNSceneRendererDelegate {
         let blades = BaseEntity(inScene: scene, forNodeWithName: "Blades")
         
         blades.node.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
-        let bladesLightNode = SCNNode()
-        var bladesLightPosition = blades.node.position
-        bladesLightPosition.y = bladesLightPosition.y + 0.2
-        bladesLightNode.light = SCNLight()
-        bladesLightNode.light!.type = .directional
-        bladesLightNode.light!.castsShadow = true
-        bladesLightNode.position = bladesLightPosition
+//        let bladesLightNode = SCNNode()
+//        var bladesLightPosition = blades.node.position
+//        bladesLightPosition.y = bladesLightPosition.y + 0.2
+//        bladesLightNode.light = SCNLight()
+//        bladesLightNode.light!.type = .directional
+//        bladesLightNode.light!.castsShadow = true
+//        bladesLightNode.position = bladesLightPosition
 //        bladesLightNode.localRotate(by: SCNQuaternion(-0.707, 0, 0, 0.707))
-        scene.rootNode.addChildNode(bladesLightNode)
+//        scene.rootNode.addChildNode(bladesLightNode)
         // NOTE: Loop sound
         
         
