@@ -12,12 +12,14 @@ class AudioPlayerComponent: GKComponent {
     
     let baseEntity: BaseEntity
     
-    var audioSource: SCNAudioSource
-    var audioPlayer: SCNAudioPlayer?
+    var audioSources = [SCNAudioSource]()
+    var interuptableSources = [SCNAudioSource: Bool]()
+    var audioPlayers: [SCNAudioPlayer] {
+        return baseEntity.node.audioPlayers
+    }
     
-    init(_ baseEntity: BaseEntity, audioSource: SCNAudioSource) {
+    init(_ baseEntity: BaseEntity) {
         self.baseEntity = baseEntity
-        self.audioSource = audioSource
         super.init()
     }
     
@@ -26,32 +28,76 @@ class AudioPlayerComponent: GKComponent {
     }
     
     override func didAddToEntity() {
-        audioPlayer = SCNAudioPlayer(source: audioSource)
-        baseEntity.node.addAudioPlayer(audioPlayer!)
+        for audioSource in audioSources {
+            baseEntity.node.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+        }
     }
     
     override func willRemoveFromEntity() {
-        if let audioPlayer = audioPlayer {
-            baseEntity.node.removeAudioPlayer(audioPlayer)
+        baseEntity.node.removeAllAudioPlayers()
+    }
+    
+    func startPlaying(audioSource: SCNAudioSource, interuptable: Bool = false) {
+        if let _ = entity {
+            audioSources.append(audioSource)
+            baseEntity.node.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+        } else {
+            audioSources.append(audioSource)
+        }
+        
+        if interuptable {
+            interuptableSources[audioSource] = true
+            baseEntity.addComponent(TapHandlerComponent(baseEntity))
         }
     }
     
-    private func stopPlaying(withDuration duration: Double) {
-            
-        // start volume fade
-        SCNTransaction.begin()
-        SCNTransaction.animationDuration = duration
+    func stopPlaying(withDuration duration: Double) {
         
-        // on completion - remove audio player
-        SCNTransaction.completionBlock = {
-            if let baseEntity = self.entity as? BaseEntity {
-                baseEntity.node.removeAudioPlayer(self.audioPlayer!)
-                self.audioPlayer = nil
+        for audioSource in audioSources where interuptableSources[audioSource] == true {
+            for audioPlayer in audioPlayers {
+                if audioPlayer.audioSource == audioSource {
+                    
+//                    // start volume fade
+//                    SCNTransaction.begin()
+//                    SCNTransaction.animationDuration = duration
+//
+//                    // on completion - remove audio player
+//                    SCNTransaction.completionBlock = {
+//                        self.baseEntity.node.removeAudioPlayer(audioPlayer)
+//                    }
+//
+//                    audioPlayer.audioSource!.volume = 0
+//
+//                    SCNTransaction.commit()
+                    
+//                    baseEntity.node.runAction(SCNAction.changeVolumeTo(0, forAudioPlayer: audioPlayer, duration: duration))
+                    
+                    
+                }
             }
         }
         
-        audioSource.volume = 0
+        baseEntity.removeComponent(ofType: TapHandlerComponent.self)
         
-        SCNTransaction.commit()
+        
+        
+//
+//        for audioPlayer in baseEntity.node.audioPlayers {
+//            audioPlayer.audioSource!.volume = 0
+//        }
+//
+//
+////        let currentVolume: Float = audioSource.volume
+////        let wantedVolume: Float = 0
+////        let changeVolume = SCNAction.customAction(duration: duration) { (node, elapsedTime) -> () in
+////            let percentage: Float = Float(elapsedTime) / Float(duration)
+//////            self.audioSource.volume = 0 //(1 - percentage) * currentVolume + percentage * wantedVolume
+////
+////            for audioPlayer in self.baseEntity.node.audioPlayers {
+////                audioPlayer.audioSource!.volume = 0
+////            }
+////        }
+////        baseEntity.node.runAction(changeVolume)
+//
     }
 }
