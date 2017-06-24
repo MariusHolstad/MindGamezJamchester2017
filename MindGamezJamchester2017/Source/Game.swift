@@ -71,7 +71,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         rug.addComponent(TapHandlerComponent(rug))
         
         // Alarm Clock
-        let alarmClock = BaseEntity(inScene: scene, forNodeWithName: "Cylinder")
+        let alarmClock = TappableAudioEntity(inScene: scene, forNodeWithName: "Cylinder")
         
         // Radio
         let radio = BaseEntity(inScene: scene, forNodeWithName: "Radio")

@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2017-06-24T14:42:20Z</created>
-  <modified>2017-06-24T14:42:20Z</modified>
+  <created>2017-06-24T14:54:26Z</created>
+  <modified>2017-06-24T14:54:26Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Z_UP</up_axis>
  </asset>
@@ -15,6 +15,30 @@
   </material>
   <material id="Material_001-material" name="Material_001">
    <instance_effect url="#effect_Material_001-material"/>
+  </material>
+  <material id="MAT_Clock" name="MAT_Clock">
+   <instance_effect url="#effect_MAT_Clock"/>
+  </material>
+  <material id="MAT_Lamp" name="MAT_Lamp">
+   <instance_effect url="#effect_MAT_Lamp"/>
+  </material>
+  <material id="MAT_Radio" name="MAT_Radio">
+   <instance_effect url="#effect_MAT_Radio"/>
+  </material>
+  <material id="MAT_TV" name="MAT_TV">
+   <instance_effect url="#effect_MAT_TV"/>
+  </material>
+  <material id="MAT_Fan" name="MAT_Fan">
+   <instance_effect url="#effect_MAT_Fan"/>
+  </material>
+  <material id="MAT_Phone" name="MAT_Phone">
+   <instance_effect url="#effect_MAT_Phone"/>
+  </material>
+  <material id="MAT_Rug" name="MAT_Rug">
+   <instance_effect url="#effect_MAT_Rug"/>
+  </material>
+  <material id="MAT_Floor" name="MAT_Floor">
+   <instance_effect url="#effect_MAT_Floor"/>
   </material>
  </library_materials>
  <library_effects>
@@ -73,6 +97,310 @@
        <float>1</float>
       </index_of_refraction>
      </phong>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+  <effect id="effect_MAT_Clock">
+   <profile_COMMON>
+    <technique sid="common">
+     <blinn>
+      <ambient>
+       <color>0.484529 0.484529 0.484529 1</color>
+      </ambient>
+      <diffuse>
+       <color>0.260517 0.260524 0.260521 1</color>
+      </diffuse>
+      <specular>
+       <color>0 0 0 1</color>
+      </specular>
+      <shininess>
+       <float>0.022516</float>
+      </shininess>
+      <reflective>
+       <color>0 0 0 1</color>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </blinn>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+  <effect id="effect_MAT_Lamp">
+   <profile_COMMON>
+    <technique sid="common">
+     <blinn>
+      <ambient>
+       <color>0.484529 0.484529 0.484529 1</color>
+      </ambient>
+      <diffuse>
+       <color>0.260517 0.260524 0.260521 1</color>
+      </diffuse>
+      <specular>
+       <color>0 0 0 1</color>
+      </specular>
+      <shininess>
+       <float>0.022516</float>
+      </shininess>
+      <reflective>
+       <color>0 0 0 1</color>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </blinn>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+  <effect id="effect_MAT_Radio">
+   <profile_COMMON>
+    <technique sid="common">
+     <blinn>
+      <ambient>
+       <color>0.484529 0.484529 0.484529 1</color>
+      </ambient>
+      <diffuse>
+       <color>0.260517 0.260524 0.260521 1</color>
+      </diffuse>
+      <specular>
+       <color>0 0 0 1</color>
+      </specular>
+      <shininess>
+       <float>0.022516</float>
+      </shininess>
+      <reflective>
+       <color>0 0 0 1</color>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </blinn>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+  <effect id="effect_MAT_TV">
+   <profile_COMMON>
+    <technique sid="common">
+     <blinn>
+      <ambient>
+       <color>0.484529 0.484529 0.484529 1</color>
+      </ambient>
+      <diffuse>
+       <color>0.260517 0.260524 0.260521 1</color>
+      </diffuse>
+      <specular>
+       <color>0 0 0 1</color>
+      </specular>
+      <shininess>
+       <float>0.022516</float>
+      </shininess>
+      <reflective>
+       <color>0 0 0 1</color>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </blinn>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+  <effect id="effect_MAT_Fan">
+   <profile_COMMON>
+    <technique sid="common">
+     <blinn>
+      <ambient>
+       <color>0.484529 0.484529 0.484529 1</color>
+      </ambient>
+      <diffuse>
+       <color>0.260517 0.260524 0.260521 1</color>
+      </diffuse>
+      <specular>
+       <color>0 0 0 1</color>
+      </specular>
+      <shininess>
+       <float>0.022516</float>
+      </shininess>
+      <reflective>
+       <color>0 0 0 1</color>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </blinn>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+  <effect id="effect_MAT_Phone">
+   <profile_COMMON>
+    <technique sid="common">
+     <blinn>
+      <ambient>
+       <color>0.484529 0.484529 0.484529 1</color>
+      </ambient>
+      <diffuse>
+       <color>0.260517 0.260524 0.260521 1</color>
+      </diffuse>
+      <specular>
+       <color>0 0 0 1</color>
+      </specular>
+      <shininess>
+       <float>0.022516</float>
+      </shininess>
+      <reflective>
+       <color>0 0 0 1</color>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </blinn>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+  <effect id="effect_MAT_Rug">
+   <profile_COMMON>
+    <technique sid="common">
+     <blinn>
+      <ambient>
+       <color>0.484529 0.484529 0.484529 1</color>
+      </ambient>
+      <diffuse>
+       <color>0.572307 0.572307 0.572307 1</color>
+      </diffuse>
+      <specular>
+       <color>0 0 0 1</color>
+      </specular>
+      <shininess>
+       <float>0.022516</float>
+      </shininess>
+      <reflective>
+       <color>0 0 0 1</color>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </blinn>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+  <effect id="effect_MAT_Floor">
+   <profile_COMMON>
+    <technique sid="common">
+     <blinn>
+      <ambient>
+       <color>0.484529 0.484529 0.484529 1</color>
+      </ambient>
+      <diffuse>
+       <color>0.572307 0.572307 0.572307 1</color>
+      </diffuse>
+      <specular>
+       <color>0 0 0 1</color>
+      </specular>
+      <shininess>
+       <float>0.022516</float>
+      </shininess>
+      <reflective>
+       <color>0 0 0 1</color>
+      </reflective>
+      <transparent opaque="A_ONE">
+       <color>1 1 1 1</color>
+      </transparent>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </blinn>
     </technique>
    </profile_COMMON>
    <extra>
@@ -1103,7 +1431,7 @@
     <instance_geometry url="#geometry13">
      <bind_material>
       <technique_common>
-       <instance_material symbol="geometryElement17" target="#Material_001-material"/>
+       <instance_material symbol="geometryElement17" target="#MAT_Clock"/>
       </technique_common>
      </bind_material>
     </instance_geometry>
@@ -1133,7 +1461,7 @@
     <instance_geometry url="#geometry28">
      <bind_material>
       <technique_common>
-       <instance_material symbol="geometryElement32" target="#Material_001-material"/>
+       <instance_material symbol="geometryElement32" target="#MAT_Lamp"/>
       </technique_common>
      </bind_material>
     </instance_geometry>
@@ -1158,7 +1486,13 @@
    </node>
    <node id="Radio" name="Radio">
     <matrix>1 0 0 -3.811131 0 1 0 3.24927 0 0 1 1.922008 0 0 0 1 </matrix>
-    <instance_geometry url="#geometry46"/>
+    <instance_geometry url="#geometry46">
+     <bind_material>
+      <technique_common>
+       <instance_material symbol="geometryElement50" target="#MAT_Radio"/>
+      </technique_common>
+     </bind_material>
+    </instance_geometry>
    </node>
    <node id="End_Table" name="End_Table">
     <matrix>1 0 0 -5.056168 0 1 0 -4.435714 0 0 1 1.725636 0 0 0 1 </matrix>
@@ -1195,7 +1529,7 @@
     <instance_geometry url="#geometry66">
      <bind_material>
       <technique_common>
-       <instance_material symbol="geometryElement70" target="#Material_001-material"/>
+       <instance_material symbol="geometryElement70" target="#MAT_TV"/>
       </technique_common>
      </bind_material>
     </instance_geometry>
@@ -1206,11 +1540,23 @@
    </node>
    <node id="Fan" name="Fan">
     <matrix>1 0 0 -3.02122 0 1 0 -0.2358831 0 0 1 4.795235 0 0 0 1 </matrix>
-    <instance_geometry url="#geometry75"/>
+    <instance_geometry url="#geometry75">
+     <bind_material>
+      <technique_common>
+       <instance_material symbol="geometryElement78" target="#MAT_Fan"/>
+      </technique_common>
+     </bind_material>
+    </instance_geometry>
    </node>
    <node id="Phone_Open" name="Phone_Open">
     <matrix>1 0 0 -2.410486 0 1 0 -4.88774 0 0 1 2.073115 0 0 0 1 </matrix>
-    <instance_geometry url="#geometry79"/>
+    <instance_geometry url="#geometry79">
+     <bind_material>
+      <technique_common>
+       <instance_material symbol="geometryElement82" target="#MAT_Phone"/>
+      </technique_common>
+     </bind_material>
+    </instance_geometry>
    </node>
    <node id="Phone_Closed" name="Phone_Closed">
     <matrix>1 0 0 -2.908077 0 1 0 -4.881368 0 0 1 2.072751 0 0 0 1 </matrix>
@@ -1221,7 +1567,7 @@
     <instance_geometry url="#geometry87">
      <bind_material>
       <technique_common>
-       <instance_material symbol="geometryElement91" target="#Material_001-material"/>
+       <instance_material symbol="geometryElement91" target="#MAT_Rug"/>
       </technique_common>
      </bind_material>
     </instance_geometry>
@@ -1256,7 +1602,7 @@
     <instance_geometry url="#geometry114">
      <bind_material>
       <technique_common>
-       <instance_material symbol="geometryElement117" target="#Material-material"/>
+       <instance_material symbol="geometryElement117" target="#MAT_Floor"/>
       </technique_common>
      </bind_material>
     </instance_geometry>
