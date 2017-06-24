@@ -71,6 +71,9 @@ class Game: NSObject, SCNSceneRendererDelegate {
         let floor = BaseEntity(inScene: scene, forNodeWithName: "Floor")
         floor.addComponent(TapHandlerComponent(floor))
         
+        let rug = BaseEntity(inScene: scene, forNodeWithName: "Rug")
+        rug.addComponent(TapHandlerComponent(rug))
+        
         let playerNode = SCNNode()
         let player = BaseEntity(playerNode) //BaseEntity(inScene: Assets.dae(named: "ASS_Clock.dae"), forNodeWithName: "Clock")
         player.addComponent(PlayerComponent(player))
