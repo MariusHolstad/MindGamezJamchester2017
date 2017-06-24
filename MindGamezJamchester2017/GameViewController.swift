@@ -13,44 +13,25 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     
-    var audioSource: SCNAudioSource!
+    // MARK: Properties
+    
+    let game = Game()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // create a new scene
-        let scene = Assets.dae(named: "ASS_Clock.dae")
-        
-        // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        scene.rootNode.addChildNode(cameraNode)
-        
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
-        
-        // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
-        
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
         // set the scene to the view
-        scnView.scene = scene
+        scnView.scene = game.scene
         
         // allows the user to manipulate the camera
         scnView.allowsCameraControl = true
+        
+        // configure the camera control behaviour
+        scnView.defaultCameraController?.interactionMode = .fly
+//        scnView.defaultCameraController?.inertiaEnabled = true
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -58,14 +39,17 @@ class GameViewController: UIViewController {
         // configure the view
         scnView.backgroundColor = UIColor.black
         
-        scnView.pointOfView = cameraNode
+        scnView.pointOfView = game.scene.rootNode.childNode(withName: "cameraNode", recursively: false)
         
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
         
-        // add sounds after setting point of view
-        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
+        // Ensure the game can manage updates for the scene.
+        scnView.delegate = game
+        
+        // Set up entities after a point of view has been assigned.
+        game.setUpEntities()
     }
     
     @objc

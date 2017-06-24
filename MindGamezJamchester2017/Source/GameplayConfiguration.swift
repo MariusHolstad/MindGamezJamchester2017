@@ -14,7 +14,7 @@ struct GameplayConfiguration {
         
         static let musicVolume: Float = 8
         
-        static let sfxVolume: Float = 8
+        static let sfxVolume: Float = 0 //8
         
         static let fadeDuration: Double = 0.5
     }
