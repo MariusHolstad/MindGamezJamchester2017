@@ -13,7 +13,6 @@
 		AD8BC41C1EFD965C0067BDE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD8BC41A1EFD965C0067BDE6 /* Main.storyboard */; };
 		AD8BC41E1EFD965C0067BDE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD8BC41D1EFD965C0067BDE6 /* Assets.xcassets */; };
 		AD8BC4211EFD965C0067BDE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD8BC41F1EFD965C0067BDE6 /* LaunchScreen.storyboard */; };
-		ADCBD7121EFDC3BC006FB46A /* TestScene01.scn in Resources */ = {isa = PBXBuildFile; fileRef = ADCBD70F1EFDB0EE006FB46A /* TestScene01.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +24,6 @@
 		AD8BC41D1EFD965C0067BDE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD8BC4201EFD965C0067BDE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD8BC4221EFD965C0067BDE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD8BC4291EFDA5910067BDE6 /* sound.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = sound.scnassets; sourceTree = "<group>"; };
-		ADCBD70F1EFDB0EE006FB46A /* TestScene01.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = TestScene01.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +56,8 @@
 		AD8BC4131EFD965C0067BDE6 /* MindGamezJamchester2017 */ = {
 			isa = PBXGroup;
 			children = (
-				ADCBD70E1EFDB0EE006FB46A /* Scenes */,
 				AD8BC4141EFD965C0067BDE6 /* AppDelegate.swift */,
 				AD8BC4161EFD965C0067BDE6 /* art.scnassets */,
-				AD8BC4291EFDA5910067BDE6 /* sound.scnassets */,
 				AD8BC4181EFD965C0067BDE6 /* GameViewController.swift */,
 				AD8BC41A1EFD965C0067BDE6 /* Main.storyboard */,
 				AD8BC41D1EFD965C0067BDE6 /* Assets.xcassets */,
@@ -70,14 +65,6 @@
 				AD8BC4221EFD965C0067BDE6 /* Info.plist */,
 			);
 			path = MindGamezJamchester2017;
-			sourceTree = "<group>";
-		};
-		ADCBD70E1EFDB0EE006FB46A /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				ADCBD70F1EFDB0EE006FB46A /* TestScene01.scn */,
-			);
-			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +125,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADCBD7121EFDC3BC006FB46A /* TestScene01.scn in Resources */,
 				AD8BC4171EFD965C0067BDE6 /* art.scnassets in Resources */,
 				AD8BC4211EFD965C0067BDE6 /* LaunchScreen.storyboard in Resources */,
 				AD8BC41E1EFD965C0067BDE6 /* Assets.xcassets in Resources */,
