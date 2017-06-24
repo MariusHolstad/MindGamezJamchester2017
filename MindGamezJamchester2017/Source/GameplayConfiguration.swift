@@ -19,4 +19,8 @@ struct GameplayConfiguration {
         static let fadeDuration: Double = 8
     }
     
+    struct camera {
+        
+        static let desiredAltitude: Float = 3
+    }
 }

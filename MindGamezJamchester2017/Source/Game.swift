@@ -204,7 +204,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         scene.rootNode.addChildNode(player.node)
         
         // Place the player
-        player.node.position = SCNVector3(x: 0, y: 0, z: 0)
+        player.node.position = SCNVector3(x: -5.1, y: 0, z: 3)
         
         cameraTarget = player.node
     }
@@ -215,6 +215,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         let cameraNode = SCNNode()
         cameraNode.name = "cameraNode"
         cameraNode.camera = SCNCamera()
+        cameraNode.localRotate(by: SCNQuaternion(0, 0.924, 0.383, 0))
         scene.rootNode.addChildNode(cameraNode)
         
         // prevent camera from cliping through close objects
@@ -237,18 +238,18 @@ class Game: NSObject, SCNSceneRendererDelegate {
     func setUpCameraConstraints() {
         
         let cameraNode = scene.rootNode.childNode(withName: "cameraNode", recursively: false)!
+        var cameraTargetPosition = cameraTarget.position
+        cameraTargetPosition.y = cameraTargetPosition.y + GameplayConfiguration.camera.desiredAltitude
+        cameraNode.position = cameraTargetPosition
         
         // distance constraints
         let follow = SCNDistanceConstraint(target: cameraTarget)
         follow.minimumDistance = 0
         follow.maximumDistance = 0
         
-        // configure a constraint to maintain a constant altitude relative to the character
-        let desiredAltitude: Float = 3 //abs(cameraNode.simdWorldPosition.y)
-        
         let keepAltitude = SCNTransformConstraint.positionConstraint(inWorldSpace: true, with: {(_ node: SCNNode, _ position: SCNVector3) -> SCNVector3 in
             var position = float3(position)
-            position.y = position.y + desiredAltitude
+            position.y = position.y + GameplayConfiguration.camera.desiredAltitude
             return SCNVector3( position )
         })
         
