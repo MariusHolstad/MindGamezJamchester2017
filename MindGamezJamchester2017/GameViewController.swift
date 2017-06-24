@@ -27,11 +27,19 @@ class GameViewController: UIViewController {
         scnView.scene = game.scene
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+//        scnView.allowsCameraControl = true
+//        let cameraController = SCNCameraController()
+//        scnView.defaultCameraController = cameraController
         
         // configure the camera control behaviour
-        scnView.defaultCameraController?.interactionMode = .fly
-//        scnView.defaultCameraController?.inertiaEnabled = true
+        scnView.defaultCameraController?.automaticTarget = false
+        scnView.defaultCameraController?.inertiaEnabled = true
+        scnView.defaultCameraController?.dollyZoom(toTarget: 0)
+//        scnView.defaultCameraController?.inertiaFriction = 0
+//        scnView.defaultCameraController?.maximumVerticalAngle = 60
+//        scnView.defaultCameraController?.target = SCNVector3Zero
+//        scnView.defaultCameraController?.interactionMode = .fly
+//
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -45,11 +53,17 @@ class GameViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
         
+        // add a pan gesture recognizer
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        scnView.addGestureRecognizer(panGesture)
+        
         // Ensure the game can manage updates for the scene.
         scnView.delegate = game
         
         // Set up entities after a point of view has been assigned.
         game.setUpEntities()
+        
+        game.setUpCameraConstraints()
     }
     
     @objc
@@ -67,6 +81,24 @@ class GameViewController: UIViewController {
             
             // pass the UIGestureRecognizer to the object if it has a TapHandlerComponent
             result.node.entity?.component(ofType: TapHandlerComponent.self)?.handleTap(gestureRecognize)
+            
+            if result.node.name == "Plane" {
+                for player in game.players {
+                    player.entity!.component(ofType: PlayerComponent.self)!.moveTo(result.worldCoordinates)
+                }
+            }
+        }
+    }
+    
+    @objc
+    func handlePan(_ gestureRecognize: UIGestureRecognizer) {
+        if let panRecognize = gestureRecognize as? UIPanGestureRecognizer {
+            let velocity = panRecognize.velocity(in: self.view)
+            
+            let scale: Float = 0.01
+            
+            let scnView = self.view as! SCNView
+            scnView.defaultCameraController?.rotateBy(x: -Float(velocity.y) * scale, y: -Float(velocity.x) * scale)
         }
     }
     
