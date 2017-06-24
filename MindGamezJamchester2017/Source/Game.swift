@@ -170,8 +170,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
         
-        // place the camera
-//        cameraNode.position = SCNVector3(x: 0, y: 3, z: 0)
+//        cameraNode.camera?.colorGrading.contents = MDLTexture(named: Assets.basePath + "textures/" + "ColorTableGraded.png")
         
 //        // Activate SSAO
 //        cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
@@ -203,12 +202,12 @@ class Game: NSObject, SCNSceneRendererDelegate {
             return SCNVector3( position )
         })
         
-//        let accelerationConstraint = SCNAccelerationConstraint()
-//        accelerationConstraint.maximumLinearVelocity = 1500.0
-//        accelerationConstraint.maximumLinearAcceleration = 50.0
-//        accelerationConstraint.damping = 0.05
+        let accelerationConstraint = SCNAccelerationConstraint()
+        accelerationConstraint.maximumLinearVelocity = 40.0
+        accelerationConstraint.maximumLinearAcceleration = 30.0
+        accelerationConstraint.damping = 0.2
         
-        cameraNode.constraints = [follow, keepAltitude] //, accelerationConstraint]
+        cameraNode.constraints = [follow, keepAltitude, accelerationConstraint]
     }
     
     // MARK: Methods
