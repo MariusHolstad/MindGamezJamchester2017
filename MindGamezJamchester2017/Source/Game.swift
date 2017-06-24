@@ -170,8 +170,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
         
-        // place the camera
-//        cameraNode.position = SCNVector3(x: 0, y: 3, z: 0)
+//        cameraNode.camera?.colorGrading.contents = MDLTexture(named: Assets.basePath + "textures/" + "ColorTableGraded.png")
         
 //        // Activate SSAO
 //        cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
