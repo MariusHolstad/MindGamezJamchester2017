@@ -43,14 +43,6 @@ class GameViewController: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
-//        // load a reusable audio source
-//        audioSource = Assets.sound(named: "testsound.ogg")
-//        audioSource.isPositional = false
-//        audioSource.shouldStream = true
-//        audioSource.volume = 8.0
-        
-        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
-        
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
@@ -71,6 +63,9 @@ class GameViewController: UIViewController {
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         scnView.addGestureRecognizer(tapGesture)
+        
+        // add sounds after setting point of view
+        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
     }
     
     @objc

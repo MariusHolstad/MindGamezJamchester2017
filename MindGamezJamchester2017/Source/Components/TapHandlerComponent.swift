@@ -31,6 +31,7 @@ class TapHandlerComponent: GKComponent {
     
     func handleTap(_ gestureRecognize: UIGestureRecognizer) {
         highlight()
+        baseEntity.component(ofType: AudioPlayerComponent.self)?.stopPlaying(withDuration: GameplayConfiguration.SFX.fadeDuration)
     }
     
     private func highlight() {
@@ -54,7 +55,7 @@ class TapHandlerComponent: GKComponent {
             SCNTransaction.commit()
         }
         
-        material.emission.contents = UIColor.red
+        material.emission.contents = UIColor.white
         
         SCNTransaction.commit()
     }

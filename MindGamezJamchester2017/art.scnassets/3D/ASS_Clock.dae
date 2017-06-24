@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2017-06-23T23:53:31Z</created>
-  <modified>2017-06-23T23:53:31Z</modified>
+  <created>2017-06-24T06:33:46Z</created>
+  <modified>2017-06-24T06:33:46Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Z_UP</up_axis>
  </asset>
@@ -48,6 +48,7 @@
    </profile_COMMON>
    <extra>
     <technique profile="SceneKit">
+     <double_sided>1</double_sided>
      <litPerPixel>1</litPerPixel>
      <ambient_diffuse_lock>1</ambient_diffuse_lock>
     </technique>
