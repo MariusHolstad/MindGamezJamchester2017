@@ -12,14 +12,16 @@ class AudioPlayerComponent: GKComponent {
     
     let baseEntity: BaseEntity
     
+    var audioNode = SCNNode()
     var audioSources = [SCNAudioSource]()
     var interuptableSources = [SCNAudioSource: Bool]()
     var audioPlayers: [SCNAudioPlayer] {
-        return baseEntity.node.audioPlayers
+        return audioNode.audioPlayers
     }
     
     init(_ baseEntity: BaseEntity) {
         self.baseEntity = baseEntity
+        baseEntity.node.addChildNode(audioNode)
         super.init()
     }
     
@@ -29,18 +31,19 @@ class AudioPlayerComponent: GKComponent {
     
     override func didAddToEntity() {
         for audioSource in audioSources {
-            baseEntity.node.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+            audioNode.addAudioPlayer(SCNAudioPlayer(source: audioSource))
         }
     }
     
     override func willRemoveFromEntity() {
-        baseEntity.node.removeAllAudioPlayers()
+        audioNode.removeAllAudioPlayers()
+        audioNode.removeFromParentNode()
     }
     
     func startPlaying(audioSource: SCNAudioSource, interuptable: Bool = false) {
         if let _ = entity {
             audioSources.append(audioSource)
-            baseEntity.node.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+            audioNode.addAudioPlayer(SCNAudioPlayer(source: audioSource))
         } else {
             audioSources.append(audioSource)
         }
@@ -57,47 +60,27 @@ class AudioPlayerComponent: GKComponent {
             for audioPlayer in audioPlayers {
                 if audioPlayer.audioSource == audioSource {
                     
-//                    // start volume fade
-//                    SCNTransaction.begin()
-//                    SCNTransaction.animationDuration = duration
-//
-//                    // on completion - remove audio player
-//                    SCNTransaction.completionBlock = {
-//                        self.baseEntity.node.removeAudioPlayer(audioPlayer)
-//                    }
-//
-//                    audioPlayer.audioSource!.volume = 0
-//
-//                    SCNTransaction.commit()
+                    // since volume fading is IMPOSSIBLE in SceneKit,
+                    // we will just move the sound out of the way before removing it :)
+                    var position = audioNode.position
+                    position.y = position.y - 100
                     
-//                    baseEntity.node.runAction(SCNAction.changeVolumeTo(0, forAudioPlayer: audioPlayer, duration: duration))
+                    // start volume fade
+                    SCNTransaction.begin()
+                    SCNTransaction.animationDuration = duration
                     
+                    // on completion - remove audio player
+                    SCNTransaction.completionBlock = {
+                        self.audioNode.removeAudioPlayer(audioPlayer)
+                    }
                     
+                    audioNode.position = position
+                    
+                    SCNTransaction.commit()
                 }
             }
         }
         
         baseEntity.removeComponent(ofType: TapHandlerComponent.self)
-        
-        
-        
-//
-//        for audioPlayer in baseEntity.node.audioPlayers {
-//            audioPlayer.audioSource!.volume = 0
-//        }
-//
-//
-////        let currentVolume: Float = audioSource.volume
-////        let wantedVolume: Float = 0
-////        let changeVolume = SCNAction.customAction(duration: duration) { (node, elapsedTime) -> () in
-////            let percentage: Float = Float(elapsedTime) / Float(duration)
-//////            self.audioSource.volume = 0 //(1 - percentage) * currentVolume + percentage * wantedVolume
-////
-////            for audioPlayer in self.baseEntity.node.audioPlayers {
-////                audioPlayer.audioSource!.volume = 0
-////            }
-////        }
-////        baseEntity.node.runAction(changeVolume)
-//
     }
 }
