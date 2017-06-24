@@ -13,7 +13,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
     // MARK: Properties
     
     /// The scene that the game controls.
-    let scene = Assets.dae(named: "ASS_Clock.dae") //SCNScene(named: "GameScene.scn")!
+    let scene = Assets.dae(named: "ASS_Room.dae") //SCNScene(named: "GameScene.scn")!
     
     /// Holds the entities, so they won't be deallocated.
     var entities = [BaseEntity]()
@@ -34,8 +34,8 @@ class Game: NSObject, SCNSceneRendererDelegate {
         cameraNode.camera = SCNCamera()
         scene.rootNode.addChildNode(cameraNode)
         
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+//        // place the camera
+//        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
         
         // create and add a light to the scene
         let lightNode = SCNNode()
@@ -55,7 +55,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
     /// Sets up the entities for the scene.
     func setUpEntities() {
         
-        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
-        entities.append(clockEntity)
+//        let clockEntity = TappableAudioEntity(inScene: scene, forNodeWithName: "Clock")
+//        entities.append(clockEntity)
     }
 }
