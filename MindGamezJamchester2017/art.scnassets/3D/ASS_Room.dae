@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.78.0 commit date:2016-09-26, commit time:12:42, hash:4bb1e22</authoring_tool>
     </contributor>
-    <created>2017-06-25T01:33:47</created>
-    <modified>2017-06-25T01:33:47</modified>
+    <created>2017-06-25T01:38:57</created>
+    <modified>2017-06-25T01:38:57</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -1766,7 +1766,9 @@
         <instance_geometry url="#Cube_003-mesh" name="Wardrobe">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Wardrobe-material" target="#MAT_Wardrobe-material"/>
+              <instance_material symbol="MAT_Wardrobe-material" target="#MAT_Wardrobe-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1786,7 +1788,9 @@
         <instance_geometry url="#Cylinder-mesh" name="Cylinder">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Clock-material" target="#MAT_Clock-material"/>
+              <instance_material symbol="MAT_Clock-material" target="#MAT_Clock-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1796,7 +1800,9 @@
         <instance_geometry url="#Cube_012-mesh" name="Door">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Door-material" target="#MAT_Door-material"/>
+              <instance_material symbol="MAT_Door-material" target="#MAT_Door-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1806,7 +1812,9 @@
         <instance_geometry url="#Plane_007-mesh" name="Mirror">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Mirror-material" target="#MAT_Mirror-material"/>
+              <instance_material symbol="MAT_Mirror-material" target="#MAT_Mirror-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1816,7 +1824,9 @@
         <instance_geometry url="#Sphere_001-mesh" name="Lamp">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Lamp-material" target="#MAT_Lamp-material"/>
+              <instance_material symbol="MAT_Lamp-material" target="#MAT_Lamp-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1830,7 +1840,9 @@
         <instance_geometry url="#Cube_019-mesh" name="Window">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Window-material" target="#MAT_Window-material"/>
+              <instance_material symbol="MAT_Window-material" target="#MAT_Window-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1840,7 +1852,9 @@
         <instance_geometry url="#Cube_021-mesh" name="Desk">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Desk-material" target="#MAT_Desk-material"/>
+              <instance_material symbol="MAT_Desk-material" target="#MAT_Desk-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1850,7 +1864,9 @@
         <instance_geometry url="#Cube_023-mesh" name="Radio">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Radio-material" target="#MAT_Radio-material"/>
+              <instance_material symbol="MAT_Radio-material" target="#MAT_Radio-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1860,7 +1876,9 @@
         <instance_geometry url="#Cube_024-mesh" name="End_Table">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_End_Table-material" target="#MAT_End_Table-material"/>
+              <instance_material symbol="MAT_End_Table-material" target="#MAT_End_Table-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1870,7 +1888,9 @@
         <instance_geometry url="#Cube_025-mesh" name="Dresser">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Dresser-material" target="#MAT_Dresser-material"/>
+              <instance_material symbol="MAT_Dresser-material" target="#MAT_Dresser-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1880,7 +1900,9 @@
         <instance_geometry url="#Cylinder_006-mesh" name="Bin">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Bin-material" target="#MAT_Bin-material"/>
+              <instance_material symbol="MAT_Bin-material" target="#MAT_Bin-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1890,7 +1912,9 @@
         <instance_geometry url="#Cube_027-mesh" name="TV">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_TV-material" target="#MAT_TV-material"/>
+              <instance_material symbol="MAT_TV-material" target="#MAT_TV-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1900,7 +1924,9 @@
         <instance_geometry url="#Cylinder_007-mesh" name="Fan">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Material_017-material" target="#Material_017-material"/>
+              <instance_material symbol="Material_017-material" target="#Material_017-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1910,7 +1936,9 @@
         <instance_geometry url="#Cube_046-mesh" name="Phone_Open">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Phone_Open-material" target="#MAT_Phone_Open-material"/>
+              <instance_material symbol="MAT_Phone_Open-material" target="#MAT_Phone_Open-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1920,7 +1948,9 @@
         <instance_geometry url="#Cube_047-mesh" name="Phone_Closed">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Phone_Closed-material" target="#MAT_Phone_Closed-material"/>
+              <instance_material symbol="MAT_Phone_Closed-material" target="#MAT_Phone_Closed-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1930,7 +1960,9 @@
         <instance_geometry url="#Cube_052-mesh" name="Rug">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Material_001-material" target="#Material_001-material"/>
+              <instance_material symbol="Material_001-material" target="#Material_001-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1940,7 +1972,9 @@
         <instance_geometry url="#Cube_056-mesh" name="Chair">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Chair-material" target="#MAT_Chair-material"/>
+              <instance_material symbol="MAT_Chair-material" target="#MAT_Chair-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1950,7 +1984,9 @@
         <instance_geometry url="#Plane_005-mesh" name="Bed_001">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MAT_Bed-material" target="#MAT_Bed-material"/>
+              <instance_material symbol="MAT_Bed-material" target="#MAT_Bed-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -1990,7 +2026,9 @@
         <instance_geometry url="#Cylinder_016-mesh" name="Blades">
           <bind_material>
             <technique_common>
-              <instance_material symbol="Material_017-material" target="#Material_017-material"/>
+              <instance_material symbol="Material_017-material" target="#Material_017-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
