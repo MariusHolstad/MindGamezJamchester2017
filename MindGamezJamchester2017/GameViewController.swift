@@ -38,7 +38,7 @@ class GameViewController: UIViewController {
         scnView.defaultCameraController?.dollyZoom(toTarget: 0)
         
         // show statistics such as fps and timing information
-        scnView.showsStatistics = true
+//        scnView.showsStatistics = true
         
         // configure the view
         scnView.backgroundColor = UIColor.black

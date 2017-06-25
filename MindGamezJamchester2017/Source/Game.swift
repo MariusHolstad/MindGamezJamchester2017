@@ -96,20 +96,37 @@ class Game: NSObject, SCNSceneRendererDelegate {
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockTickSource)
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockMusicSource, interuptable: true)
         alarmClock.addComponent(alarmClockAudioPlayerComponent)
-        // NOTE: Loop sound
         
         
         
         // Radio
         let radio = BaseEntity(inScene: scene, forNodeWithName: "Radio")
-        // NOTE: Play once
+        let radioAudioPlayerComponent = AudioPlayerComponent(radio)
+        
+        let radioSource = Assets.sound(named: "radio ambience.mp3")
+        radioSource.loops = true
+        radioSource.volume = GameplayConfiguration.SFX.sfxVolume
+        radioSource.isPositional = true
+        radioSource.shouldStream = false
+        radioSource.load()
+        
+        radioAudioPlayerComponent.startPlaying(audioSource: radioSource, interuptable: true)
+        radio.addComponent(radioAudioPlayerComponent)
         
         
         
         // Fan and Blades
         let fan = BaseEntity(inScene: scene, forNodeWithName: "Fan")
-        let blades = BaseEntity(inScene: scene, forNodeWithName: "Blades")
+        let fanAudioPlayerComponent = AudioPlayerComponent(fan)
         
+        let fanSource = Assets.sound(named: "fan ambience.mp3")
+        fanSource.loops = true
+        fanSource.volume = GameplayConfiguration.SFX.musicVolume
+        fanSource.isPositional = true
+        fanSource.shouldStream = false
+        fanSource.load()
+        
+        let blades = BaseEntity(inScene: scene, forNodeWithName: "Blades")
         blades.node.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
 //        let bladesLightNode = SCNNode()
 //        var bladesLightPosition = blades.node.position
@@ -120,7 +137,10 @@ class Game: NSObject, SCNSceneRendererDelegate {
 //        bladesLightNode.position = bladesLightPosition
 //        bladesLightNode.localRotate(by: SCNQuaternion(-0.707, 0, 0, 0.707))
 //        scene.rootNode.addChildNode(bladesLightNode)
-        // NOTE: Loop sound
+        fan.node.addChildNode(blades.node)
+        
+        fanAudioPlayerComponent.startPlaying(audioSource: fanSource, interuptable: true)
+        fan.addComponent(fanAudioPlayerComponent)
         
         
         
@@ -136,7 +156,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         tvSource.load()
         
 //        tvAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
-        tvAudioPlayerComponent.startPlaying(audioSource: tvSource)
+        tvAudioPlayerComponent.startPlaying(audioSource: tvSource, interuptable: true)
         tv.addComponent(tvAudioPlayerComponent)
         // NOTE: Play once
         
