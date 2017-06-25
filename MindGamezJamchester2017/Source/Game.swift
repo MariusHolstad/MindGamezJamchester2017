@@ -21,6 +21,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
     var cameraTarget: SCNNode!
     
     var tapHandlers = [SCNNode]()
+    var timeGameEnded: TimeInterval?
     var gameEnded = false
     
     var isFanSpinning = false
@@ -154,7 +155,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         // TV
         let tv = BaseEntity(inScene: scene, forNodeWithName: "TV")
         let tvAudioPlayerComponent = AudioPlayerComponent(tv)
-//        let tvTextureChangeComponent = TextureChangeComponent(tv)
+        let tvTextureChangeComponent = TextureChangeComponent(tv)
         
         let tvSource = Assets.sound(named: "TV ambience.mp3")
         tvSource.loops = true
@@ -167,7 +168,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         
         tvAudioPlayerComponent.startPlaying(audioSource: tvSource, interuptable: true)
         tv.addComponent(tvAudioPlayerComponent)
-//        tv.addComponent(tvTextureChangeComponent)
+        tv.addComponent(tvTextureChangeComponent)
         // NOTE: Play once
         
         
@@ -347,8 +348,11 @@ class Game: NSObject, SCNSceneRendererDelegate {
         let timeSincePreviousUpdate = time - previousUpdateTime
         
         if !gameEnded && tapHandlers.filter({ $0.entity?.component(ofType: TapHandlerComponent.self) != nil }).isEmpty {
-            endGame()
-            gameEnded = true
+            timeGameEnded = timeGameEnded ?? time
+            if time - timeGameEnded! > 8 {
+                endGame()
+                gameEnded = true
+            }
         }
         
         if isFanSpinning {
