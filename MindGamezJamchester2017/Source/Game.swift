@@ -44,19 +44,19 @@ class Game: NSObject, SCNSceneRendererDelegate {
     
     func setUpScene() {
         
-        // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
-        
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
+//        // create and add a light to the scene
+//        let lightNode = SCNNode()
+//        lightNode.light = SCNLight()
+//        lightNode.light!.type = .omni
+//        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+//        scene.rootNode.addChildNode(lightNode)
+//        
+//        // create and add an ambient light to the scene
+//        let ambientLightNode = SCNNode()
+//        ambientLightNode.light = SCNLight()
+//        ambientLightNode.light!.type = .ambient
+//        ambientLightNode.light!.color = UIColor.darkGray
+//        scene.rootNode.addChildNode(ambientLightNode)
     }
     
     /// Sets up the entities for the scene.
@@ -223,14 +223,14 @@ class Game: NSObject, SCNSceneRendererDelegate {
         
 //        cameraNode.camera!.colorGrading.contents = MDLTexture(named: Assets.basePath + "textures/" + "ColorTableGraded.png")
         
-//        // Activate SSAO
-//        cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
-//
-//        // Configure SSAO
-//        cameraNode.camera!.screenSpaceAmbientOcclusionRadius = 5 //scene units
-//        cameraNode.camera!.screenSpaceAmbientOcclusionBias = 0.03 //scene units
-//        cameraNode.camera!.screenSpaceAmbientOcclusionDepthThreshold = 0.2 //scene units
-//        cameraNode.camera!.screenSpaceAmbientOcclusionNormalThreshold = 0.3
+        // Activate SSAO
+        cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
+        
+        // Configure SSAO
+        cameraNode.camera!.screenSpaceAmbientOcclusionRadius = 5 //scene units
+        cameraNode.camera!.screenSpaceAmbientOcclusionBias = 0.03 //scene units
+        cameraNode.camera!.screenSpaceAmbientOcclusionDepthThreshold = 0.2 //scene units
+        cameraNode.camera!.screenSpaceAmbientOcclusionNormalThreshold = 0.3
         
         
         // prevent camera from cliping through close objects

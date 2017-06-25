@@ -29,6 +29,9 @@ class GameViewController: UIViewController {
         // force view to update continiously
         scnView.isPlaying = true
         
+        // enable default lighting
+        scnView.autoenablesDefaultLighting = true
+        
         // configure the camera control behaviour
         scnView.defaultCameraController?.automaticTarget = false
         scnView.defaultCameraController?.inertiaEnabled = true
