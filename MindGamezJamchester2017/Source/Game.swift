@@ -164,7 +164,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         tvSource.shouldStream = false
         tvSource.load()
         
-//        tvTextureChangeComponent.newMaterialName = "MAT_TV_OFF"
+        tvTextureChangeComponent.newTextureName = "art.scnassets/textures/TEX_TV_Off_D.tga"
         
         tvAudioPlayerComponent.startPlaying(audioSource: tvSource, interuptable: true)
         tv.addComponent(tvAudioPlayerComponent)
@@ -349,7 +349,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         
         if !gameEnded && tapHandlers.filter({ $0.entity?.component(ofType: TapHandlerComponent.self) != nil }).isEmpty {
             timeGameEnded = timeGameEnded ?? time
-            if time - timeGameEnded! > 8 {
+            if time - timeGameEnded! > 10 {
                 endGame()
                 gameEnded = true
             }
