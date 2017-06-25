@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2017-06-25T04:28:44Z</created>
-  <modified>2017-06-25T04:28:44Z</modified>
+  <created>2017-06-25T07:14:29Z</created>
+  <modified>2017-06-25T07:14:29Z</modified>
   <unit meter="1.000000"/>
   <up_axis>Z_UP</up_axis>
  </asset>
@@ -832,7 +832,7 @@
     <technique sid="common">
      <phong>
       <ambient>
-       <color>0.484529 0.484529 0.484529 1</color>
+       <color>0 0 0 1</color>
       </ambient>
       <diffuse>
        <texture texture="ID39_image16" texcoord="CHANNEL2"/>
