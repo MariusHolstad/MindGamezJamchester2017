@@ -12,12 +12,19 @@ class AudioPlayerComponent: GKComponent {
     
     let baseEntity: BaseEntity
     
-    var audioSource: SCNAudioSource
-    var audioPlayer: SCNAudioPlayer?
+    var audioNodes = [SCNNode]()
+    var audioSources = [SCNAudioSource]()
+    var interuptableSources = [SCNAudioSource: Bool]()
+    var audioPlayers: [SCNAudioPlayer] {
+        var players = [SCNAudioPlayer]()
+        for audioNode in audioNodes {
+            players = players + audioNode.audioPlayers
+        }
+        return players
+    }
     
-    init(_ baseEntity: BaseEntity, audioSource: SCNAudioSource) {
+    init(_ baseEntity: BaseEntity) {
         self.baseEntity = baseEntity
-        self.audioSource = audioSource
         super.init()
     }
     
@@ -26,50 +33,67 @@ class AudioPlayerComponent: GKComponent {
     }
     
     override func didAddToEntity() {
-        audioPlayer = SCNAudioPlayer(source: audioSource)
-        baseEntity.node.addAudioPlayer(audioPlayer!)
+        for audioSource in audioSources {
+            audioNodes.append(SCNNode())
+            baseEntity.node.addChildNode(audioNodes.last!)
+            audioNodes.last!.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+        }
     }
     
     override func willRemoveFromEntity() {
-        if let audioPlayer = audioPlayer {
-            baseEntity.node.removeAudioPlayer(audioPlayer)
+        for audioNode in audioNodes {
+            audioNode.removeAllAudioPlayers()
+            audioNode.removeFromParentNode()
+        }
+        audioNodes = [SCNNode]()
+    }
+    
+    func startPlaying(audioSource: SCNAudioSource, interuptable: Bool = false) {
+        if let _ = entity {
+            audioSources.append(audioSource)
+            audioNodes.append(SCNNode())
+            baseEntity.node.addChildNode(audioNodes.last!)
+            audioNodes.last!.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+        } else {
+            audioSources.append(audioSource)
+        }
+        
+        if interuptable {
+            interuptableSources[audioSource] = true
+            baseEntity.addComponent(TapHandlerComponent(baseEntity))
         }
     }
     
     func stopPlaying(withDuration duration: Double) {
         
-        baseEntity.node.removeAudioPlayer(self.audioPlayer!)
-        self.audioPlayer = nil
+        for audioSource in audioSources where interuptableSources[audioSource] == true {
+            for audioNode in audioNodes {
+                for audioPlayer in audioNode.audioPlayers {
+                    if audioPlayer.audioSource == audioSource {
+                        
+                        // since volume fading is IMPOSSIBLE in SceneKit,
+                        // we will just move the sound out of the way before removing it :)
+                        var position = audioNode.position
+                        position.y = position.y - 100
+                        
+                        // start volume fade
+                        SCNTransaction.begin()
+                        SCNTransaction.animationDuration = duration
+                        
+                        // on completion - remove audio player
+                        SCNTransaction.completionBlock = {
+                            audioNode.removeAudioPlayer(audioPlayer)
+                            self.audioNodes = self.audioNodes.filter({ $0 != audioNode })
+                        }
+                        
+                        audioNode.position = position
+                        
+                        SCNTransaction.commit()
+                    }
+                }
+            }
+        }
         
-//        // start volume fade
-//        SCNTransaction.begin()
-//        SCNTransaction.animationDuration = duration
-//
-//        // on completion - remove audio player
-//        SCNTransaction.completionBlock = {
-//            if let baseEntity = self.entity as? BaseEntity {
-//                baseEntity.node.removeAudioPlayer(self.audioPlayer!)
-//                self.audioPlayer = nil
-//            }
-//        }
-//
-//        for audioPlayer in baseEntity.node.audioPlayers {
-//            audioPlayer.audioSource!.volume = 0
-//        }
-//
-//
-////        let currentVolume: Float = audioSource.volume
-////        let wantedVolume: Float = 0
-////        let changeVolume = SCNAction.customAction(duration: duration) { (node, elapsedTime) -> () in
-////            let percentage: Float = Float(elapsedTime) / Float(duration)
-//////            self.audioSource.volume = 0 //(1 - percentage) * currentVolume + percentage * wantedVolume
-////
-////            for audioPlayer in self.baseEntity.node.audioPlayers {
-////                audioPlayer.audioSource!.volume = 0
-////            }
-////        }
-////        baseEntity.node.runAction(changeVolume)
-//
-//        SCNTransaction.commit()
+        baseEntity.removeComponent(ofType: TapHandlerComponent.self)
     }
 }

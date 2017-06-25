@@ -12,11 +12,15 @@ struct GameplayConfiguration {
     
     struct SFX {
         
-        static let musicVolume: Float = 8
+        static let musicVolume: Float = 0 //8
         
-        static let sfxVolume: Float = 0 //8
+        static let sfxVolume: Float = 0 //4
         
-        static let fadeDuration: Double = 0.5
+        static let fadeDuration: Double = 8
     }
     
+    struct camera {
+        
+        static let desiredAltitude: Float = 3
+    }
 }

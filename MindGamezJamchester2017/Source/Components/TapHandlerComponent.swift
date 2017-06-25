@@ -32,11 +32,18 @@ class TapHandlerComponent: GKComponent {
     func handleTap(_ gestureRecognize: UIGestureRecognizer) {
         highlight()
         baseEntity.component(ofType: AudioPlayerComponent.self)?.stopPlaying(withDuration: GameplayConfiguration.SFX.fadeDuration)
+        
+        if let visibilitySwapComponent = baseEntity.component(ofType: VisibilitySwapComponent.self) {
+            visibilitySwapComponent.swapVisibility()
+            if let node = visibilitySwapComponent.node2 {
+                highlight(node)
+            }
+        }
     }
     
-    private func highlight() {
+    private func highlight(_ node: SCNNode? = nil) {
             
-        let node = baseEntity.node
+        let node = node ?? baseEntity.node
         
         // get its material
         let material = node.geometry!.firstMaterial!

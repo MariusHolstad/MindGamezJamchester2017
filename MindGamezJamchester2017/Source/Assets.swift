@@ -9,7 +9,7 @@
 import SceneKit
 
 struct Assets {
-    private static let basePath = "art.scnassets/"
+    static let basePath = "art.scnassets/"
     
     private static let daePath = basePath + "3D/"
     private static let scenesPath = basePath + "scenes/"
