@@ -258,6 +258,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         scene.rootNode.addChildNode(cameraNode)
         
         cameraNode.camera!.colorGrading.contents = MDLTexture(named: Assets.basePath + "textures/" + "ColorTableGraded2.png")
+        cameraNode.camera!.colorGrading.intensity = 0.2
         
         // Activate SSAO
         cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
