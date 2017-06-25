@@ -149,7 +149,14 @@ class Game: NSObject, SCNSceneRendererDelegate {
         
         // Phone
         let phone = BaseEntity(inScene: scene, forNodeWithName: "Phone_Open")
+        let phoneClosed = BaseEntity(inScene: scene, forNodeWithName: "Phone_Closed")
         let phoneAudioPlayerComponent = AudioPlayerComponent(phone)
+        let phoneVisibilitySwapComponent = VisibilitySwapComponent(phone)
+        
+        phoneClosed.node.transform = phone.node.transform
+        phoneClosed.node.isHidden = true
+        phoneVisibilitySwapComponent.node1 = phone.node
+        phoneVisibilitySwapComponent.node2 = phoneClosed.node
         
         let phoneSource = Assets.sound(named: "phone busy ambience.mp3")
         phoneSource.loops = true
@@ -165,9 +172,10 @@ class Game: NSObject, SCNSceneRendererDelegate {
         phoneMusicSource.shouldStream = false
         phoneMusicSource.load()
         
-        phoneAudioPlayerComponent.startPlaying(audioSource: phoneSource)
+        phoneAudioPlayerComponent.startPlaying(audioSource: phoneSource, interuptable: true)
         phoneAudioPlayerComponent.startPlaying(audioSource: phoneMusicSource, interuptable: true)
         phone.addComponent(phoneAudioPlayerComponent)
+        phone.addComponent(phoneVisibilitySwapComponent)
         // NOTE: Play once
         
         
