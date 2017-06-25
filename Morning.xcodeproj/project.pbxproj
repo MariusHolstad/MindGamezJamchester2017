@@ -31,7 +31,7 @@
 		AD6FC3861EFDE6BB002A76D9 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		AD6FC3891EFDE956002A76D9 /* BaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
 		AD6FC38C1EFDE9FF002A76D9 /* TapHandlerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapHandlerComponent.swift; sourceTree = "<group>"; };
-		AD8BC4111EFD965C0067BDE6 /* MindGamezJamchester2017.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindGamezJamchester2017.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD8BC4111EFD965C0067BDE6 /* Morning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Morning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8BC4141EFD965C0067BDE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD8BC4161EFD965C0067BDE6 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		AD8BC4181EFD965C0067BDE6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		AD8BC4121EFD965C0067BDE6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD8BC4111EFD965C0067BDE6 /* MindGamezJamchester2017.app */,
+				AD8BC4111EFD965C0067BDE6 /* Morning.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,9 +130,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD8BC4101EFD965C0067BDE6 /* MindGamezJamchester2017 */ = {
+		AD8BC4101EFD965C0067BDE6 /* Morning */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD8BC4251EFD965C0067BDE6 /* Build configuration list for PBXNativeTarget "MindGamezJamchester2017" */;
+			buildConfigurationList = AD8BC4251EFD965C0067BDE6 /* Build configuration list for PBXNativeTarget "Morning" */;
 			buildPhases = (
 				AD8BC40D1EFD965C0067BDE6 /* Sources */,
 				AD8BC40E1EFD965C0067BDE6 /* Frameworks */,
@@ -142,9 +142,9 @@
 			);
 			dependencies = (
 			);
-			name = MindGamezJamchester2017;
+			name = Morning;
 			productName = MindGamezJamchester2017;
-			productReference = AD8BC4111EFD965C0067BDE6 /* MindGamezJamchester2017.app */;
+			productReference = AD8BC4111EFD965C0067BDE6 /* Morning.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -162,7 +162,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AD8BC40C1EFD965C0067BDE6 /* Build configuration list for PBXProject "MindGamezJamchester2017" */;
+			buildConfigurationList = AD8BC40C1EFD965C0067BDE6 /* Build configuration list for PBXProject "Morning" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -175,7 +175,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD8BC4101EFD965C0067BDE6 /* MindGamezJamchester2017 */,
+				AD8BC4101EFD965C0067BDE6 /* Morning */,
 			);
 		};
 /* End PBXProject section */
@@ -372,7 +372,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD8BC40C1EFD965C0067BDE6 /* Build configuration list for PBXProject "MindGamezJamchester2017" */ = {
+		AD8BC40C1EFD965C0067BDE6 /* Build configuration list for PBXProject "Morning" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD8BC4231EFD965C0067BDE6 /* Debug */,
@@ -381,7 +381,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD8BC4251EFD965C0067BDE6 /* Build configuration list for PBXNativeTarget "MindGamezJamchester2017" */ = {
+		AD8BC4251EFD965C0067BDE6 /* Build configuration list for PBXNativeTarget "Morning" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD8BC4261EFD965C0067BDE6 /* Debug */,
