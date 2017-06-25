@@ -24,6 +24,7 @@
 		ADCCCBCE1EFE63B000EE4A8A /* PlayerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBCD1EFE63B000EE4A8A /* PlayerComponent.swift */; };
 		ADCCCBD01EFEC7E300EE4A8A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBCF1EFEC7E300EE4A8A /* Extensions.swift */; };
 		ADCCCBD21EFF3D3F00EE4A8A /* VisibilitySwapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBD11EFF3D3E00EE4A8A /* VisibilitySwapComponent.swift */; };
+		ADCCCBD41EFF650800EE4A8A /* TextureChangeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCCCBD31EFF650800EE4A8A /* TextureChangeComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		ADCCCBCD1EFE63B000EE4A8A /* PlayerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerComponent.swift; sourceTree = "<group>"; };
 		ADCCCBCF1EFEC7E300EE4A8A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ADCCCBD11EFF3D3E00EE4A8A /* VisibilitySwapComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilitySwapComponent.swift; sourceTree = "<group>"; };
+		ADCCCBD31EFF650800EE4A8A /* TextureChangeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureChangeComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				ADCCCBC61EFDF82D00EE4A8A /* AudioPlayerComponent.swift */,
 				ADCCCBCD1EFE63B000EE4A8A /* PlayerComponent.swift */,
 				ADCCCBD11EFF3D3E00EE4A8A /* VisibilitySwapComponent.swift */,
+				ADCCCBD31EFF650800EE4A8A /* TextureChangeComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				AD6FC38D1EFDE9FF002A76D9 /* TapHandlerComponent.swift in Sources */,
 				AD6FC3871EFDE6BB002A76D9 /* Assets.swift in Sources */,
 				ADCCCBCE1EFE63B000EE4A8A /* PlayerComponent.swift in Sources */,
+				ADCCCBD41EFF650800EE4A8A /* TextureChangeComponent.swift in Sources */,
 				AD8BC4191EFD965C0067BDE6 /* GameViewController.swift in Sources */,
 				ADCCCBC31EFDF61E00EE4A8A /* AudioEntity.swift in Sources */,
 				ADCCCBD01EFEC7E300EE4A8A /* Extensions.swift in Sources */,
