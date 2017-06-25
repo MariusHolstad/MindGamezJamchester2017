@@ -226,9 +226,6 @@ class Game: NSObject, SCNSceneRendererDelegate {
         cameraNode.localRotate(by: SCNQuaternion(0, 0.924, 0.383, 0))
         scene.rootNode.addChildNode(cameraNode)
         
-        // prevent camera from cliping through close objects
-        cameraNode.camera!.zNear = 0.01
-        
 //        cameraNode.camera!.colorGrading.contents = MDLTexture(named: Assets.basePath + "textures/" + "ColorTableGraded.png")
         
 //        // Activate SSAO
@@ -241,6 +238,30 @@ class Game: NSObject, SCNSceneRendererDelegate {
 //        cameraNode.camera!.screenSpaceAmbientOcclusionNormalThreshold = 0.3
         
         
+        // prevent camera from cliping through close objects
+        cameraNode.camera!.zNear = 0.01
+        cameraNode.camera!.zFar = 100
+        
+        // depth of field
+        cameraNode.camera!.wantsDepthOfField = true
+        cameraNode.camera!.fStop = 1.4
+        cameraNode.camera!.focusDistance = 2 // or 2.0?
+        
+//        // bloom?
+//        cameraNode.camera!.bloomIntensity = 1
+//        cameraNode.camera!.bloomThreshold = 0.7
+//        cameraNode.camera!.bloomBlurRadius = 20
+        
+//        // HDR?
+//        cameraNode.camera!.wantsHDR = true
+        cameraNode.camera!.wantsExposureAdaptation = false
+        
+        // Vignette
+        cameraNode.camera!.vignettingPower = 0.3
+        cameraNode.camera!.vignettingIntensity = 0.5
+        
+        // motion blur
+        cameraNode.camera!.motionBlurIntensity = 0.1
     }
     
     func setUpCameraConstraints() {
