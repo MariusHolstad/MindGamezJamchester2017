@@ -29,6 +29,8 @@ class GameViewController: UIViewController {
         // force view to update continiously
         scnView.isPlaying = true
         
+        scnView.antialiasingMode = .multisampling2X
+        
         // enable default lighting
 //        scnView.autoenablesDefaultLighting = true
         
