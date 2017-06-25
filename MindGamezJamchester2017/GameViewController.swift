@@ -29,13 +29,16 @@ class GameViewController: UIViewController {
         // force view to update continiously
         scnView.isPlaying = true
         
+        // enable default lighting
+        scnView.autoenablesDefaultLighting = true
+        
         // configure the camera control behaviour
         scnView.defaultCameraController?.automaticTarget = false
         scnView.defaultCameraController?.inertiaEnabled = true
         scnView.defaultCameraController?.dollyZoom(toTarget: 0)
         
         // show statistics such as fps and timing information
-        scnView.showsStatistics = true
+//        scnView.showsStatistics = true
         
         // configure the view
         scnView.backgroundColor = UIColor.black

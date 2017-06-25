@@ -44,19 +44,19 @@ class Game: NSObject, SCNSceneRendererDelegate {
     
     func setUpScene() {
         
-        // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
-        
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
+//        // create and add a light to the scene
+//        let lightNode = SCNNode()
+//        lightNode.light = SCNLight()
+//        lightNode.light!.type = .omni
+//        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+//        scene.rootNode.addChildNode(lightNode)
+//        
+//        // create and add an ambient light to the scene
+//        let ambientLightNode = SCNNode()
+//        ambientLightNode.light = SCNLight()
+//        ambientLightNode.light!.type = .ambient
+//        ambientLightNode.light!.color = UIColor.darkGray
+//        scene.rootNode.addChildNode(ambientLightNode)
     }
     
     /// Sets up the entities for the scene.
@@ -65,11 +65,6 @@ class Game: NSObject, SCNSceneRendererDelegate {
         // Floor
         let floor = BaseEntity(inScene: scene, forNodeWithName: "Floor")
         floor.addComponent(TapHandlerComponent(floor))
-        
-        // Rug
-        let rug = BaseEntity(inScene: scene, forNodeWithName: "Rug")
-        rug.addComponent(TapHandlerComponent(rug))
-        
         
         
         // Alarm Clock
@@ -101,20 +96,37 @@ class Game: NSObject, SCNSceneRendererDelegate {
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockTickSource)
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockMusicSource, interuptable: true)
         alarmClock.addComponent(alarmClockAudioPlayerComponent)
-        // NOTE: Loop sound
         
         
         
         // Radio
         let radio = BaseEntity(inScene: scene, forNodeWithName: "Radio")
-        // NOTE: Play once
+        let radioAudioPlayerComponent = AudioPlayerComponent(radio)
+        
+        let radioSource = Assets.sound(named: "radio ambience.mp3")
+        radioSource.loops = true
+        radioSource.volume = GameplayConfiguration.SFX.sfxVolume
+        radioSource.isPositional = true
+        radioSource.shouldStream = false
+        radioSource.load()
+        
+        radioAudioPlayerComponent.startPlaying(audioSource: radioSource, interuptable: true)
+        radio.addComponent(radioAudioPlayerComponent)
         
         
         
         // Fan and Blades
         let fan = BaseEntity(inScene: scene, forNodeWithName: "Fan")
-        let blades = BaseEntity(inScene: scene, forNodeWithName: "Blades")
+        let fanAudioPlayerComponent = AudioPlayerComponent(fan)
         
+        let fanSource = Assets.sound(named: "fan ambience.mp3")
+        fanSource.loops = true
+        fanSource.volume = GameplayConfiguration.SFX.musicVolume
+        fanSource.isPositional = true
+        fanSource.shouldStream = false
+        fanSource.load()
+        
+        let blades = BaseEntity(inScene: scene, forNodeWithName: "Blades")
         blades.node.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
 //        let bladesLightNode = SCNNode()
 //        var bladesLightPosition = blades.node.position
@@ -125,7 +137,10 @@ class Game: NSObject, SCNSceneRendererDelegate {
 //        bladesLightNode.position = bladesLightPosition
 //        bladesLightNode.localRotate(by: SCNQuaternion(-0.707, 0, 0, 0.707))
 //        scene.rootNode.addChildNode(bladesLightNode)
-        // NOTE: Loop sound
+        fan.node.addChildNode(blades.node)
+        
+        fanAudioPlayerComponent.startPlaying(audioSource: fanSource, interuptable: true)
+        fan.addComponent(fanAudioPlayerComponent)
         
         
         
@@ -141,7 +156,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         tvSource.load()
         
 //        tvAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
-        tvAudioPlayerComponent.startPlaying(audioSource: tvSource)
+        tvAudioPlayerComponent.startPlaying(audioSource: tvSource, interuptable: true)
         tv.addComponent(tvAudioPlayerComponent)
         // NOTE: Play once
         
@@ -226,21 +241,42 @@ class Game: NSObject, SCNSceneRendererDelegate {
         cameraNode.localRotate(by: SCNQuaternion(0, 0.924, 0.383, 0))
         scene.rootNode.addChildNode(cameraNode)
         
-        // prevent camera from cliping through close objects
-        cameraNode.camera!.zNear = 0.01
-        
 //        cameraNode.camera!.colorGrading.contents = MDLTexture(named: Assets.basePath + "textures/" + "ColorTableGraded.png")
         
-//        // Activate SSAO
-//        cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
-//
-//        // Configure SSAO
-//        cameraNode.camera!.screenSpaceAmbientOcclusionRadius = 5 //scene units
-//        cameraNode.camera!.screenSpaceAmbientOcclusionBias = 0.03 //scene units
-//        cameraNode.camera!.screenSpaceAmbientOcclusionDepthThreshold = 0.2 //scene units
-//        cameraNode.camera!.screenSpaceAmbientOcclusionNormalThreshold = 0.3
+        // Activate SSAO
+        cameraNode.camera!.screenSpaceAmbientOcclusionIntensity = 1.0
+        
+        // Configure SSAO
+        cameraNode.camera!.screenSpaceAmbientOcclusionRadius = 5 //scene units
+        cameraNode.camera!.screenSpaceAmbientOcclusionBias = 0.03 //scene units
+        cameraNode.camera!.screenSpaceAmbientOcclusionDepthThreshold = 0.2 //scene units
+        cameraNode.camera!.screenSpaceAmbientOcclusionNormalThreshold = 0.3
         
         
+        // prevent camera from cliping through close objects
+        cameraNode.camera!.zNear = 0.01
+        cameraNode.camera!.zFar = 100
+        
+        // depth of field
+        cameraNode.camera!.wantsDepthOfField = true
+        cameraNode.camera!.fStop = 1.4
+        cameraNode.camera!.focusDistance = 2 // or 2.0?
+        
+//        // bloom?
+//        cameraNode.camera!.bloomIntensity = 1
+//        cameraNode.camera!.bloomThreshold = 0.7
+//        cameraNode.camera!.bloomBlurRadius = 20
+        
+//        // HDR?
+//        cameraNode.camera!.wantsHDR = true
+        cameraNode.camera!.wantsExposureAdaptation = false
+        
+        // Vignette
+        cameraNode.camera!.vignettingPower = 0.3
+        cameraNode.camera!.vignettingIntensity = 0.5
+        
+        // motion blur
+        cameraNode.camera!.motionBlurIntensity = 0.1
     }
     
     func setUpCameraConstraints() {
@@ -267,9 +303,13 @@ class Game: NSObject, SCNSceneRendererDelegate {
 //            let qz = orientation.z
 //            let qw = orientation.w
 //            
-//            var heading = atan2(2*qy*qw-2*qx*qz , 1 - 2*qy^2 - 2*qz^2)
+//            let qxSquare = pow(qx, 2)
+//            let qySquare = pow(qy, 2)
+//            let qzSquare = pow(qz, 2)
+//            
+//            var heading = atan2(2*qy*qw-2*qx*qz , 1 - 2*qySquare - 2*qzSquare)
 //            var attitude = asin(2*qx*qy + 2*qz*qw)
-//            var bank = atan2(2*qx*qw-2*qy*qz , 1 - 2*qx^2 - 2*qz^2)
+//            var bank = atan2(2*qx*qw-2*qy*qz , 1 - 2*qxSquare - 2*qzSquare)
             
             return orientation
         })
