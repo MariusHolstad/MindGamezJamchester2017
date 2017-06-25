@@ -30,7 +30,7 @@ class GameViewController: UIViewController {
         scnView.isPlaying = true
         
         // enable default lighting
-        scnView.autoenablesDefaultLighting = true
+//        scnView.autoenablesDefaultLighting = true
         
         // configure the camera control behaviour
         scnView.defaultCameraController?.automaticTarget = false
