@@ -288,9 +288,13 @@ class Game: NSObject, SCNSceneRendererDelegate {
 //            let qz = orientation.z
 //            let qw = orientation.w
 //            
-//            var heading = atan2(2*qy*qw-2*qx*qz , 1 - 2*qy^2 - 2*qz^2)
+//            let qxSquare = pow(qx, 2)
+//            let qySquare = pow(qy, 2)
+//            let qzSquare = pow(qz, 2)
+//            
+//            var heading = atan2(2*qy*qw-2*qx*qz , 1 - 2*qySquare - 2*qzSquare)
 //            var attitude = asin(2*qx*qy + 2*qz*qw)
-//            var bank = atan2(2*qx*qw-2*qy*qz , 1 - 2*qx^2 - 2*qz^2)
+//            var bank = atan2(2*qx*qw-2*qy*qz , 1 - 2*qxSquare - 2*qzSquare)
             
             return orientation
         })
