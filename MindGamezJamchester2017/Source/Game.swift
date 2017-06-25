@@ -81,9 +81,9 @@ class Game: NSObject, SCNSceneRendererDelegate {
         clockAlarmSource.shouldStream = false
         clockAlarmSource.load()
         
-        let clockTickSource = Assets.sound(named: "clock tick ambience.mp3")
+        let clockTickSource = Assets.sound(named: "clock tick ambience2.mp3")
         clockTickSource.loops = true
-        clockTickSource.volume = GameplayConfiguration.SFX.sfxVolume
+        clockTickSource.volume = GameplayConfiguration.SFX.sfxVolume * 0.2
         clockTickSource.isPositional = true
         clockTickSource.shouldStream = false
         clockTickSource.load()
