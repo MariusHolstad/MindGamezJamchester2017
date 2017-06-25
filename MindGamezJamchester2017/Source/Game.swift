@@ -23,6 +23,8 @@ class Game: NSObject, SCNSceneRendererDelegate {
     var tapHandlers = [SCNNode]()
     var gameEnded = false
     
+    var isFanSpinning = false
+    
     // An array of all nodes with a player component attached.
     var players: [SCNNode] {
         return scene.rootNode.childNodes(passingTest: { (node: SCNNode, _: UnsafeMutablePointer<ObjCBool>) -> Bool in
@@ -132,6 +134,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         
         let blades = BaseEntity(inScene: scene, forNodeWithName: "Blades")
         blades.node.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+        isFanSpinning = true
 //        let bladesLightNode = SCNNode()
 //        var bladesLightPosition = blades.node.position
 //        bladesLightPosition.y = bladesLightPosition.y + 0.2
@@ -345,6 +348,14 @@ class Game: NSObject, SCNSceneRendererDelegate {
         if !gameEnded && tapHandlers.filter({ $0.entity?.component(ofType: TapHandlerComponent.self) != nil }).isEmpty {
             endGame()
             gameEnded = true
+        }
+        
+        if isFanSpinning {
+            let fan = scene.rootNode.childNode(withName: "Fan", recursively: false)
+            if fan?.entity?.component(ofType: TapHandlerComponent.self) == nil {
+                let blades = scene.rootNode.childNode(withName: "Blades", recursively: false)
+                blades?.removeAllActions()
+            }
         }
         
         // Update the previous update time to keep future calculations accurate.
