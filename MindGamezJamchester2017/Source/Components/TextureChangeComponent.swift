@@ -10,7 +10,7 @@ import GameplayKit
 
 class TextureChangeComponent: GKComponent {
     
-    var newMaterialName: String?
+    var newTextureName: String?
     
     let baseEntity: BaseEntity
     
@@ -25,33 +25,16 @@ class TextureChangeComponent: GKComponent {
     
     func changeTexture() {
         
-        if let newMaterialName = newMaterialName {
+        if let newTextureName = newTextureName {
             
-            let node = baseEntity.node
-            
-            // highlight it
             SCNTransaction.begin()
             SCNTransaction.animationDuration = 0.5
             
-            // on completion - change materia
+            // on completion - change material
             SCNTransaction.completionBlock = {
                 
-//                node.geometry!.materials.removeFirst()
-                node.geometry!.firstMaterial! = node.geometry!.material(named: newMaterialName)!
-                
-//                if let newMaterial = node.geometry!.material(named: newMaterialName) {
-//
-//                    newMaterial.emission.contents = node.geometry!.firstMaterial!.emission.contents
-//
-//                    node.geometry!.firstMaterial! = newMaterial
-//
-//                    SCNTransaction.begin()
-//                    SCNTransaction.animationDuration = 0.5
-//
-//                    node.geometry!.firstMaterial!.emission.contents = UIColor.black
-//
-//                    SCNTransaction.commit()
-//                }
+                let node = self.baseEntity.node
+                node.geometry!.firstMaterial!.diffuse.contents = MDLTexture(named: newTextureName)
                 
                 self.baseEntity.removeComponent(ofType: TextureChangeComponent.self)
             }
