@@ -79,10 +79,23 @@ class GameViewController: UIViewController {
             result.node.entity?.component(ofType: TapHandlerComponent.self)?.handleTap(gestureRecognize)
             
             let name = result.node.name
-            if name == "Floor" || name == "Rug" {
+            if name == "Floor" {
                 for player in game.players {
                     player.entity!.component(ofType: PlayerComponent.self)!.moveTo(result.worldCoordinates)
                 }
+            } else if name == "Plane_003" && hitResults.count > 1 {
+                // retrieved the second clicked object
+                let result = hitResults[1]
+                
+                // pass the UIGestureRecognizer to the object if it has a TapHandlerComponent
+                result.node.entity?.component(ofType: TapHandlerComponent.self)?.handleTap(gestureRecognize)
+            }
+            
+            if game.gameEnded && scnView.scene == game.scene
+                && game.tapHandlers.filter({ $0.entity?.component(ofType: TapHandlerComponent.self) != nil }).isEmpty {
+                
+                let transition = SKTransition.fade(with: UIColor.white, duration: 2)
+                scnView.present(Assets.scene(named: "EndScene.scn"), with: transition, incomingPointOfView: nil)
             }
         }
     }

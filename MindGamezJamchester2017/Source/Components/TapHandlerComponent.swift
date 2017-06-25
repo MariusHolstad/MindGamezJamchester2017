@@ -33,6 +33,8 @@ class TapHandlerComponent: GKComponent {
         highlight()
         baseEntity.component(ofType: AudioPlayerComponent.self)?.stopPlaying(withDuration: GameplayConfiguration.SFX.fadeDuration)
         
+        baseEntity.component(ofType: TextureChangeComponent.self)?.changeTexture()
+        
         if let visibilitySwapComponent = baseEntity.component(ofType: VisibilitySwapComponent.self) {
             visibilitySwapComponent.swapVisibility()
             if let node = visibilitySwapComponent.node2 {

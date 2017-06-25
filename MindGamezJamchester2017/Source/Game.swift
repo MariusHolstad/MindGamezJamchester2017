@@ -20,6 +20,9 @@ class Game: NSObject, SCNSceneRendererDelegate {
     
     var cameraTarget: SCNNode!
     
+    var tapHandlers = [SCNNode]()
+    var gameEnded = false
+    
     // An array of all nodes with a player component attached.
     var players: [SCNNode] {
         return scene.rootNode.childNodes(passingTest: { (node: SCNNode, _: UnsafeMutablePointer<ObjCBool>) -> Bool in
@@ -94,7 +97,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
         alarmClockAudioPlayerComponent.startPlaying(audioSource: clockTickSource)
-        alarmClockAudioPlayerComponent.startPlaying(audioSource: clockMusicSource, interuptable: true)
+//        alarmClockAudioPlayerComponent.startPlaying(audioSource: clockMusicSource, interuptable: true)
         alarmClock.addComponent(alarmClockAudioPlayerComponent)
         
         
@@ -103,12 +106,13 @@ class Game: NSObject, SCNSceneRendererDelegate {
         let radio = BaseEntity(inScene: scene, forNodeWithName: "Radio")
         let radioAudioPlayerComponent = AudioPlayerComponent(radio)
         
-        let radioSource = Assets.sound(named: "radio ambience.mp3")
-        radioSource.loops = true
-        radioSource.volume = GameplayConfiguration.SFX.sfxVolume
-        radioSource.isPositional = true
-        radioSource.shouldStream = false
-        radioSource.load()
+        let radioSource = clockMusicSource
+//        let radioSource = Assets.sound(named: "radio ambience.mp3")
+//        radioSource.loops = true
+//        radioSource.volume = GameplayConfiguration.SFX.sfxVolume
+//        radioSource.isPositional = true
+//        radioSource.shouldStream = false
+//        radioSource.load()
         
         radioAudioPlayerComponent.startPlaying(audioSource: radioSource, interuptable: true)
         radio.addComponent(radioAudioPlayerComponent)
@@ -121,7 +125,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         
         let fanSource = Assets.sound(named: "fan ambience.mp3")
         fanSource.loops = true
-        fanSource.volume = GameplayConfiguration.SFX.musicVolume
+        fanSource.volume = GameplayConfiguration.SFX.sfxVolume * 0.3
         fanSource.isPositional = true
         fanSource.shouldStream = false
         fanSource.load()
@@ -137,7 +141,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
 //        bladesLightNode.position = bladesLightPosition
 //        bladesLightNode.localRotate(by: SCNQuaternion(-0.707, 0, 0, 0.707))
 //        scene.rootNode.addChildNode(bladesLightNode)
-        fan.node.addChildNode(blades.node)
+//        fan.node.addChildNode(blades.node)
         
         fanAudioPlayerComponent.startPlaying(audioSource: fanSource, interuptable: true)
         fan.addComponent(fanAudioPlayerComponent)
@@ -147,6 +151,7 @@ class Game: NSObject, SCNSceneRendererDelegate {
         // TV
         let tv = BaseEntity(inScene: scene, forNodeWithName: "TV")
         let tvAudioPlayerComponent = AudioPlayerComponent(tv)
+//        let tvTextureChangeComponent = TextureChangeComponent(tv)
         
         let tvSource = Assets.sound(named: "TV ambience.mp3")
         tvSource.loops = true
@@ -155,9 +160,11 @@ class Game: NSObject, SCNSceneRendererDelegate {
         tvSource.shouldStream = false
         tvSource.load()
         
-//        tvAudioPlayerComponent.startPlaying(audioSource: clockAlarmSource, interuptable: true)
+//        tvTextureChangeComponent.newMaterialName = "MAT_TV_OFF"
+        
         tvAudioPlayerComponent.startPlaying(audioSource: tvSource, interuptable: true)
         tv.addComponent(tvAudioPlayerComponent)
+//        tv.addComponent(tvTextureChangeComponent)
         // NOTE: Play once
         
         
@@ -218,7 +225,13 @@ class Game: NSObject, SCNSceneRendererDelegate {
         lamp.addComponent(lampAudioPlayerComponent)
         // NOTE: Loop sound
         
-        
+        // add all relevant tapHandlers
+        tapHandlers.append(alarmClock.node)
+        tapHandlers.append(radio.node)
+        tapHandlers.append(fan.node)
+        tapHandlers.append(tv.node)
+        tapHandlers.append(phone.node)
+        tapHandlers.append(lamp.node)
         
         // Player
         let playerNode = SCNNode()
@@ -324,20 +337,35 @@ class Game: NSObject, SCNSceneRendererDelegate {
     
     // MARK: Methods
     
-//    // Updates every frame.
-//    func renderer(_: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-//        // Calculate the time change since the previous update.
-//        let timeSincePreviousUpdate = time - previousUpdateTime
-//
-////        for player in players {
-////            player.entity!.component(ofType: PlayerComponent.self)!.update(deltaTime: timeSincePreviousUpdate)
-////        }
-//
-//        playerComponentSystem.update(deltaTime: timeSincePreviousUpdate)
-//
-//        // Update the previous update time to keep future calculations accurate.
-//        previousUpdateTime = time
-//    }
+    // Updates every frame.
+    func renderer(_: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        // Calculate the time change since the previous update.
+        let timeSincePreviousUpdate = time - previousUpdateTime
+        
+        if !gameEnded && tapHandlers.filter({ $0.entity?.component(ofType: TapHandlerComponent.self) != nil }).isEmpty {
+            endGame()
+            gameEnded = true
+        }
+        
+        // Update the previous update time to keep future calculations accurate.
+        previousUpdateTime = time
+    }
+    
+    func endGame() {
+        let door = BaseEntity(inScene: scene, forNodeWithName: "Door")
+        let doorAudioPlayerComponent = AudioPlayerComponent(door)
+        
+        let doorSource = Assets.sound(named: "knock-on-a-door.mp3")
+        doorSource.loops = true
+        doorSource.volume = GameplayConfiguration.SFX.musicVolume
+        doorSource.isPositional = true
+        doorSource.shouldStream = false
+        doorSource.load()
+        
+        doorAudioPlayerComponent.startPlaying(audioSource: doorSource, interuptable: true)
+        door.addComponent(doorAudioPlayerComponent)
+        tapHandlers.append(door.node)
+    }
     
 //    func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
 //        let cameraNode = scene.rootNode.childNode(withName: "cameraNode", recursively: false)!

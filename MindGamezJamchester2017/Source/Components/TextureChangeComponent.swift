@@ -10,7 +10,7 @@ import GameplayKit
 
 class TextureChangeComponent: GKComponent {
     
-    var newTexture: SCNMaterialProperty?
+    var newMaterialName: String?
     
     let baseEntity: BaseEntity
     
@@ -25,22 +25,38 @@ class TextureChangeComponent: GKComponent {
     
     func changeTexture() {
         
-        let node = baseEntity.node
-        
-        // get its material
-//        let material = node.geometry!.firstMaterial!
-        
-        // highlight it
-        SCNTransaction.begin()
-        SCNTransaction.animationDuration = 0.5
-        
-        // on completion - unhighlight
-        SCNTransaction.completionBlock = {
-            self.baseEntity.removeComponent(ofType: TextureChangeComponent.self)
+        if let newMaterialName = newMaterialName {
+            
+            let node = baseEntity.node
+            
+            // highlight it
+            SCNTransaction.begin()
+            SCNTransaction.animationDuration = 0.5
+            
+            // on completion - change materia
+            SCNTransaction.completionBlock = {
+                
+//                node.geometry!.materials.removeFirst()
+                node.geometry!.firstMaterial! = node.geometry!.material(named: newMaterialName)!
+                
+//                if let newMaterial = node.geometry!.material(named: newMaterialName) {
+//
+//                    newMaterial.emission.contents = node.geometry!.firstMaterial!.emission.contents
+//
+//                    node.geometry!.firstMaterial! = newMaterial
+//
+//                    SCNTransaction.begin()
+//                    SCNTransaction.animationDuration = 0.5
+//
+//                    node.geometry!.firstMaterial!.emission.contents = UIColor.black
+//
+//                    SCNTransaction.commit()
+//                }
+                
+                self.baseEntity.removeComponent(ofType: TextureChangeComponent.self)
+            }
+            
+            SCNTransaction.commit()
         }
-        
-//        material.
-        
-        SCNTransaction.commit()
     }
 }

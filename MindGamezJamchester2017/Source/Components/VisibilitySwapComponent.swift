@@ -25,7 +25,7 @@ class VisibilitySwapComponent: GKComponent {
     }
     
     func swapVisibility() {
-        node1?.isHidden = !node1!.isHidden
+        node1?.geometry = nil
         node2?.isHidden = !node2!.isHidden
     }
 }
